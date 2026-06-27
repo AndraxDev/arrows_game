@@ -72,6 +72,7 @@ import com.batodev.arrows.ui.theme.LocalThemeColors
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -328,7 +329,10 @@ private fun GenerateContent(state: GenerateContentState) {
                         scaleX = buttonPulseScale
                         scaleY = buttonPulseScale
                     },
-                colors = ButtonDefaults.buttonColors(containerColor = state.themeColors.accent),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = state.themeColors.accent,
+                    contentColor = state.themeColors.background
+                ),
                 shape = MaterialTheme.shapes.extraLarge
             ) {
                 Icon(Icons.Default.AutoAwesome, contentDescription = null)
@@ -481,7 +485,7 @@ private fun ShapeItem(
     )
     var hasPopped by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
-        delay(GenerateScreenLogic.shapePopInDelayMs(globalIndex))
+        delay(GenerateScreenLogic.shapePopInDelayMs(globalIndex).milliseconds)
         hasPopped = true
     }
     val popInScale by animateFloatAsState(
@@ -502,7 +506,7 @@ private fun ShapeItem(
             .clickable { onClick() },
         colors = CardDefaults.cardColors(
             containerColor = containerColor,
-            contentColor = White
+            contentColor = if (isSelected) themeColors.background else White
         ),
         shape = MaterialTheme.shapes.medium
     ) {

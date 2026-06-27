@@ -73,8 +73,8 @@
     <string name="shape_rectangular">Rectangular</string>
     <string name="sounds_label">Sounds</string>
     <string name="source_code_label">Source Code</string>
-    <string name="speed_high">High</string>
-    <string name="speed_low">Low</string>
+    <string name="speed_high">Fast</string>
+    <string name="speed_low">Slow</string>
     <string name="speed_medium">Medium</string>
     <string name="theme_bw">Black and White</string>
     <string name="theme_dark">Dark</string>

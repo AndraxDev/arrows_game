@@ -36,23 +36,26 @@ fun AppNavigationBar(
         contentColor = White
     ) {
         GeneratorNavigationItem(
-            isUnlocked = isGeneratorUnlocked,
+            isUnlocked = /*isGeneratorUnlocked,*/ true, /* temp debug */
             selected = selectedDestination == NavigationDestination.GENERATOR,
+            themeColors = themeColors,
             onNavigate = onNavigateToGenerate
         )
         HomeNavigationItem(
             selected = selectedDestination == NavigationDestination.HOME,
+            themeColors = themeColors,
             onNavigate = onNavigateHome
         )
         SettingsNavigationItem(
             selected = selectedDestination == NavigationDestination.SETTINGS,
+            themeColors = themeColors,
             onNavigate = onNavigateToSettings
         )
     }
 }
 
 @Composable
-fun RowScope.HomeNavigationItem(selected: Boolean, onNavigate: () -> Unit) {
+fun RowScope.HomeNavigationItem(selected: Boolean, themeColors: ThemeColors, onNavigate: () -> Unit) {
     NavigationBarItem(
         icon = {
             Icon(
@@ -69,16 +72,16 @@ fun RowScope.HomeNavigationItem(selected: Boolean, onNavigate: () -> Unit) {
         },
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = White,
-            indicatorColor = NavigationIndicator,
+            indicatorColor = themeColors.topBarButton,
             selectedTextColor = White,
-            unselectedIconColor = InactiveIcon,
-            unselectedTextColor = InactiveIcon
+            unselectedIconColor = themeColors.accent,
+            unselectedTextColor = themeColors.accent
         )
     )
 }
 
 @Composable
-fun RowScope.SettingsNavigationItem(selected: Boolean, onNavigate: () -> Unit) {
+fun RowScope.SettingsNavigationItem(selected: Boolean, themeColors: ThemeColors, onNavigate: () -> Unit) {
     NavigationBarItem(
         icon = {
             Icon(
@@ -95,16 +98,16 @@ fun RowScope.SettingsNavigationItem(selected: Boolean, onNavigate: () -> Unit) {
         },
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = White,
-            indicatorColor = NavigationIndicator,
+            indicatorColor = themeColors.topBarButton,
             selectedTextColor = White,
-            unselectedIconColor = InactiveIcon,
-            unselectedTextColor = InactiveIcon
+            unselectedIconColor = themeColors.accent,
+            unselectedTextColor = themeColors.accent
         )
     )
 }
 
 @Composable
-fun RowScope.GeneratorNavigationItem(isUnlocked: Boolean, selected: Boolean = false, onNavigate: () -> Unit) {
+fun RowScope.GeneratorNavigationItem(isUnlocked: Boolean, selected: Boolean = false, themeColors: ThemeColors, onNavigate: () -> Unit) {
     val icon = if (isUnlocked) Icons.Default.AutoAwesome else Icons.Default.Lock
     val label = if (isUnlocked) stringResource(R.string.custom_gen_title)
     else stringResource(R.string.level_label, GameConstants.GENERATOR_UNLOCK_LEVEL)
@@ -120,10 +123,10 @@ fun RowScope.GeneratorNavigationItem(isUnlocked: Boolean, selected: Boolean = fa
         },
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = White,
-            unselectedIconColor = InactiveIcon,
+            unselectedIconColor = themeColors.accent,
             selectedTextColor = White,
-            unselectedTextColor = InactiveIcon,
-            indicatorColor = NavigationIndicator
+            unselectedTextColor = themeColors.accent,
+            indicatorColor = themeColors.topBarButton
         )
     )
 }

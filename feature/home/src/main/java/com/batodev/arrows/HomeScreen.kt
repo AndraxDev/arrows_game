@@ -196,7 +196,10 @@ private fun PlayButton(isContinue: Boolean, themeColors: ThemeColors, visible: B
             .height(56.dp)
             .homeEntryModifier(visible, staggerIndex = 2)
             .graphicsLayer { scaleX = pulseScale; scaleY = pulseScale },
-        colors = ButtonDefaults.buttonColors(containerColor = themeColors.accent),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = themeColors.accent,
+            contentColor = themeColors.background
+        ),
         shape = RoundedCornerShape(28.dp)
     ) {
         Text(text = text, fontSize = 20.sp, fontWeight = FontWeight.Bold)
