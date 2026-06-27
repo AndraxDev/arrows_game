@@ -113,7 +113,7 @@ fun LegalSection(
 ) {
     SettingsGroup(themeColors.topBarButton) {
         SettingsClickableItem(Icons.Default.Description, stringResource(R.string.privacy_label)) {
-            SettingsUtils.launchBrowser(context, "https://robmat.github.io/privacy_policy.html")
+            SettingsUtils.launchBrowser(context, "https://arrows.andrax.dev/privacy.html")
         }
         SettingsClickableItem(Icons.Default.Description, stringResource(R.string.third_party_licenses_label)) {
             onLicensesClick()
