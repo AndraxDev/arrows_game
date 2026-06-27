@@ -2,7 +2,7 @@
 
 **Arrows Game** is a modular Android puzzle game inspired by *Arrows – Puzzle Escape*.
 
-Google Play: https://play.google.com/store/apps/details?id=com.batodev.arrows
+Original repo: https://github.com/robmat/arrows_game
 
 ---
 
@@ -26,7 +26,6 @@ This project is an experiment in board generation: the main goal is to create a 
 - Toggleable guidance lines overlay to help aim
 
 ### Win Celebration
-- Full-screen celebration with fade-in/out video playback (26 videos)
 - 10 randomized congratulatory messages
 - Confetti particle animation
 
@@ -41,16 +40,8 @@ This project is an experiment in board generation: the main goal is to create a 
 - 3 animation speed levels: High, Medium, Low
 - Vibration and sound toggles
 
-### Monetization
-- Banner, rewarded, and interstitial ads
-- Ad-free unlock by watching 30 rewarded ads (with progress bar)
-
 ### Localization
 - 15 languages: English, Arabic, Bengali, German, Spanish, French, Hindi, Indonesian, Italian, Japanese, Polish, Portuguese, Russian, Urdu, Chinese
-
-### Feedback & Legal
-- In-app review (Rate Us), email support (Write Us), developer store link (More Games)
-- Privacy policy link and third-party licenses dialog
 
 ### Debug
 - Debug menu to force board dimensions, lives, and shapes
@@ -75,7 +66,7 @@ The project follows **Clean Architecture** with **feature-based modularization**
 ├──────────────┬──────────────┬──────────────┬────────┤
 │ :feature:home│ :feature:game│:feature:gen..│:feat.. │  Feature layer
 ├──────────────┴──────────────┴──────────────┴────────┤
-│          :core:ui              :ads                 │  Presentation / shared
+│                    :core:ui                         │  Presentation / shared
 ├─────────────────────────────────────────────────────┤
 │                    :domain                          │  Business logic (pure Kotlin)
 ├──────────────────────────┬──────────────────────────┤
@@ -95,7 +86,7 @@ The project uses **Koin** for dependency injection, allowing for a decoupled and
 
 ### How it works
 1. **Centralized Initialization**: Koin is started in `ArrowsApplication` using `startKoin`, where the Android context is provided and all modules are loaded.
-2. **Modular Definitions**: Each layer/feature defines its own Koin module (e.g., `dataModule`, `adsModule`, `viewModelModule`), keeping dependencies close to where they are used.
+2. **Modular Definitions**: Each layer/feature defines its own Koin module (e.g., `dataModule`, `viewModelModule`), keeping dependencies close to where they are used.
 3. **Injection**:
     - **Appyx Nodes**: Implement `KoinComponent` to use `by inject()` for retrieving dependencies that aren't passed via constructors.
     - **ViewModels**: Defined using Koin's `viewModel` DSL and injected into Composables or Activities.
@@ -262,18 +253,6 @@ Test coverage: `GameEngineTapTest`, `GameEngineShapeLogicTest`, `CustomGameShape
 
 ---
 
-### `:ads`
-**Monetization.** Google Mobile Ads integration and GDPR consent.
-
-| File | Purpose |
-|------|---------|
-| `RewardAdManager.kt` | Rewarded ad lifecycle: load, show, callbacks |
-| `InterstitialAdManager.kt` | Interstitial lifecycle (shown every 5 games) |
-| `ConsentManager.kt` | Google UMP consent flow (GDPR / regional) |
-| `BannerAdView.kt` | Composable banner ad |
-
----
-
 ## Tech Stack
 
 | Layer | Technology |
@@ -292,9 +271,9 @@ Test coverage: `GameEngineTapTest`, `GameEngineShapeLogicTest`, `CustomGameShape
 | Celebrations | Konfetti 2.0.5 (confetti) |
 | Licenses UI | AboutLibraries 14.0.0-b02 |
 
-**Android SDK:** minSdk 29 (Android 10) · compileSdk 36 (Android 15)
+**Android SDK:** minSdk 29 (Android 10) · compileSdk 37 (Android 17)
 **App version:** 1.7 (version code 8)
-**Application ID:** `com.batodev.arrows`
+**Application ID:** `dev.andrax.arrows`
 
 ---
 
@@ -317,3 +296,22 @@ for monitoring and profiling Java and .NET applications.
 YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
 <a href="https://www.yourkit.com/dotnet-profiler/">YourKit .NET Profiler</a>,
 and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
+
+## Modifications
+
+> Copied and modified in accordance with the GPLv3 license. Original author: Rob Mathew (robmat). Modifications by: Dmytro Ostapenko (AndraxDev)
+
+### Modification plan:
+
+- Update Android SDK compatibility
+- Fix issues with theme where button text and navigation color are rendered blue regardless of the theme set
+- Remove ads and distracting celebration videos
+- Expand touch area for arrows not only for it heads
+- Maybe make more lives per level as starting from level 30 there are only 2 lives which makes the game too hard and frustrating
+- Make board size in regular levels bigger so it is more interesting and challenging
+- Probably do something with screen transitions as some of them are too "rough" for now
+- Remove internet access permission to make the game fully offline and privacy-friendly
+
+### Further modifications by users:
+
+> In case you want to add modification to this repository, please change package name as you will not be able to install app with package `dev.andrax.arrows` and your signature on certified android devices. The package has been claimed by the repository owner.
