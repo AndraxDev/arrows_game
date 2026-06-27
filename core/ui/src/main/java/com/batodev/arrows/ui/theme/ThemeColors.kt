@@ -1,8 +1,6 @@
 package com.batodev.arrows.ui.theme
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -27,10 +25,10 @@ data class ThemeColors(
 
 val LocalThemeColors = staticCompositionLocalOf {
     ThemeColors(
-        background = DarkBackground,
+        background = BlueBackground,
         accent = AccentBlue,
-        snake = SnakeColor,
-        topBarButton = TopBarButtonBackground,
+        snake = SnakeBlue,
+        topBarButton = AccentBlue,
         bottomBar = BottomBarBackground
     )
 }
@@ -38,7 +36,6 @@ val LocalThemeColors = staticCompositionLocalOf {
 private val DarkColorScheme = darkColorScheme(primary = Purple80, secondary = PurpleGrey80, tertiary = Pink80)
 private val LightColorScheme = lightColorScheme(primary = Purple40, secondary = PurpleGrey40, tertiary = Pink40)
 
-@RequiresApi(Build.VERSION_CODES.S)
 private fun getThemeColors(themeName: String, context: Context): ThemeColors = when (themeName) {
     "Green" -> ThemeColors(
         GreenBackground, GreenAccent, GreenSnake,
@@ -61,8 +58,12 @@ private fun getThemeColors(themeName: String, context: Context): ThemeColors = w
         BWAccent.copy(alpha = 0.2f), BWBackground.copy(alpha = 0.8f)
     )
     "Blue" -> ThemeColors(
-        DarkBackground, AccentBlue, SnakeColor,
-        TopBarButtonBackground.copy(alpha = 0.2f), BottomBarBackground.copy(alpha = 0.8f)
+        BlueBackground, AccentBlue, SnakeBlue,
+        AccentBlue.copy(alpha = 0.2f), BlueBackground.copy(alpha = 0.8f)
+    )
+    "Purple" -> ThemeColors(
+        PurpleBackground, PurpleAccent, PurpleSnake,
+        PurpleAccent.copy(alpha = 0.2f), PurpleBackground.copy(alpha = 0.8f)
     )
     else -> {
         val dynamicSystemColorBackground = dynamicDarkColorScheme(context).background
@@ -84,7 +85,7 @@ fun ArrowsTheme(
 ) {
     val themeColors = getThemeColors(themeName, context)
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && themeName == "Dark" -> {
+        dynamicColor && themeName == "Dark" -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }

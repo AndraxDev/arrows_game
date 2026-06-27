@@ -79,6 +79,8 @@ private fun getLocalizedThemeName(theme: String): String {
         "Red" -> stringResource(R.string.theme_red)
         "Yellow" -> stringResource(R.string.theme_yellow)
         "Orange" -> stringResource(R.string.theme_orange)
+        "Blue" -> stringResource(R.string.theme_blue)
+        "Purple" -> stringResource(R.string.theme_purple)
         "Black and White" -> stringResource(R.string.theme_bw)
         else -> theme
     }
@@ -122,7 +124,7 @@ fun LegalSection(
 @Composable
 fun ThemeSelectionDialog(currentTheme: String, onDismiss: () -> Unit, onThemeSelected: (String) -> Unit) {
     val themeColors = LocalThemeColors.current
-    val themes = listOf("Dark", "Green", "Red", "Yellow", "Orange", "Black and White")
+    val themes = listOf("Dark", "Green", "Red", "Yellow", "Orange", "Blue", "Purple", "Black and White")
     AlertDialog(
         onDismissRequest = onDismiss, containerColor = themeColors.background,
         title = {

@@ -81,6 +81,8 @@
     <string name="theme_green">Green</string>
     <string name="theme_label">Theme</string>
     <string name="theme_orange">Orange</string>
+    <string name="theme_blue">Blue</string>
+    <string name="theme_purple">Purple</string>
     <string name="theme_red">Red</string>
     <string name="theme_yellow">Yellow</string>
     <string name="third_party_licenses_label">Third Party Licenses</string>
