@@ -315,6 +315,7 @@ and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 - Remove internet access permission to make the game fully offline and privacy-friendly
 - Add theme that follows system accent/wallpaper color
 - Add more theme colors
+- Harmonize existing theme colors to make them more visually appealing
 
 ### Further modifications by users:
 
