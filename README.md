@@ -313,6 +313,8 @@ and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 - Make board size in regular levels bigger so it is more interesting and challenging
 - Probably do something with screen transitions as some of them are too "rough" for now
 - Remove internet access permission to make the game fully offline and privacy-friendly
+- Add theme that follows system accent/wallpaper color
+- Add more theme colors
 
 ### Further modifications by users:
 
