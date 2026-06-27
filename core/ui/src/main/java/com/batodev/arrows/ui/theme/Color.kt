@@ -11,8 +11,8 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val DarkBackground = Color(0xFF1E1F28)
-val AccentBlue = Color(0xFF5B7BFE)
+val DarkBackground = Color(0xFF1E1E25)
+val AccentBlue = Color(0xFFC4CFFF)
 val LightCyan = Color(0xFF4CC9F0)
 val BottomBarBackground = Color(0xFF2A2C3E)
 val InactiveIcon = Color(0xFF6C6E85)
@@ -29,24 +29,24 @@ val FlashingRed = Color(0xFFFF0000)
 val NavigationIndicator = Color(0xFF3E4155)
 
 // Greenish Theme
-val GreenBackground = Color(0xFF1B2E1B)
-val GreenAccent = Color(0xFF4CAF50)
-val GreenSnake = Color(0xFFA8E6CF)
+val GreenBackground = Color(0xFF272D22)
+val GreenAccent = Color(0xFFD0FFBC)
+val GreenSnake = Color(0xFFB1E6A8)
 
 // Reddish Theme
-val RedBackground = Color(0xFF2E1B1B)
-val RedAccent = Color(0xFFE91E63)
-val RedSnake = Color(0xFFFF8A80)
+val RedBackground = Color(0xFF251F1F)
+val RedAccent = Color(0xFFFFA5A5)
+val RedSnake = Color(0xFFFFB0A9)
 
 // Yellowish Theme
-val YellowBackground = Color(0xFF2E2E1B)
-val YellowAccent = Color(0xFFFFEB3B)
-val YellowSnake = Color(0xFFFFF176)
+val YellowBackground = Color(0xFF2D2D21)
+val YellowAccent = Color(0xFFFFF28B)
+val YellowSnake = Color(0xFFFFF398)
 
 // Orangish Theme
-val OrangeBackground = Color(0xFF2E241B)
-val OrangeAccent = Color(0xFFFF9800)
-val OrangeSnake = Color(0xFFFFB74D)
+val OrangeBackground = Color(0xFF211D18)
+val OrangeAccent = Color(0xFFFFBF8D)
+val OrangeSnake = Color(0xFFFFC089)
 
 // Black and White Theme
 val BWBackground = Color(0xFF000000)
