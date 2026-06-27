@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "dev.andrax.arrows"
-        minSdk = 29
+        minSdk = 32
         targetSdk = 37
         versionCode = 20
         versionName = "2.0"

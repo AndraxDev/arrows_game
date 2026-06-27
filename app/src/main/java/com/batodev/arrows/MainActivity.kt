@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity(), IntegrationPointProvider {
 
         setContent {
             val currentTheme by appViewModel.theme.collectAsState()
-            ArrowsTheme(themeName = currentTheme) {
+            ArrowsTheme(themeName = currentTheme, context = this@MainActivity) {
                 NodeHost(integrationPoint = appyxV1IntegrationPoint) { buildContext ->
                     RootNode(
                         buildContext = buildContext,

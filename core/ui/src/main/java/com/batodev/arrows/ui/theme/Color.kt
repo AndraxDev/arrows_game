@@ -29,22 +29,22 @@ val FlashingRed = Color(0xFFFF0000)
 val NavigationIndicator = Color(0xFF3E4155)
 
 // Greenish Theme
-val GreenBackground = Color(0xFF272D22)
+val GreenBackground = Color(0xFF1A1C17)
 val GreenAccent = Color(0xFFD0FFBC)
 val GreenSnake = Color(0xFFB1E6A8)
 
 // Reddish Theme
-val RedBackground = Color(0xFF251F1F)
+val RedBackground = Color(0xFF1C1818)
 val RedAccent = Color(0xFFFFA5A5)
 val RedSnake = Color(0xFFFFB0A9)
 
 // Yellowish Theme
-val YellowBackground = Color(0xFF2D2D21)
+val YellowBackground = Color(0xFF1E1E17)
 val YellowAccent = Color(0xFFFFF28B)
 val YellowSnake = Color(0xFFFFF398)
 
 // Orangish Theme
-val OrangeBackground = Color(0xFF211D18)
+val OrangeBackground = Color(0xFF1C1915)
 val OrangeAccent = Color(0xFFFFBF8D)
 val OrangeSnake = Color(0xFFFFC089)
 
