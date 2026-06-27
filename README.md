@@ -305,6 +305,8 @@ and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 
 - Update Android SDK compatibility
 - Fix issues with theme where button text and navigation color are rendered blue regardless of the theme set
+- Fix issues with black-white theme where some icon buttons are rendered completely white
+- Reduce redundant dialog transparency or at least add blur effect to make it easier to read dialog contents
 - Remove ads and distracting celebration videos
 - Expand touch area for arrows not only for it heads
 - Maybe make more lives per level as starting from level 30 there are only 2 lives which makes the game too hard and frustrating
