@@ -139,7 +139,6 @@ private fun SettingsScaffold(params: SettingsScaffoldParams) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
             Box(modifier = Modifier.settingsEntryModifier(visible, sectionIndex = 0)) {
                 PreferencesSection(
                     PreferencesParams(

@@ -50,15 +50,15 @@ fun PreferencesSection(params: PreferencesParams) {
     SettingsGroup(params.themeColors.topBarButton) {
         SettingsSwitchItem(
             Icons.Default.Vibration, stringResource(R.string.vibrations_label),
-            isVibrationEnabled, params.themeColors.accent
+            isVibrationEnabled, params.themeColors
         ) { params.viewModel.saveVibration(it) }
         SettingsSwitchItem(
             Icons.AutoMirrored.Filled.VolumeUp, stringResource(R.string.sounds_label),
-            isSoundsEnabled, params.themeColors.accent
+            isSoundsEnabled, params.themeColors
         ) { params.viewModel.saveSounds(it) }
         SettingsSwitchItem(
             Icons.Default.Grid4x4, stringResource(R.string.fill_board_label),
-            isFillBoardEnabled, params.themeColors.accent
+            isFillBoardEnabled, params.themeColors
         ) { params.viewModel.saveFillBoard(it) }
         SettingsClickableItem(
             Icons.Default.Palette, stringResource(R.string.theme_label),
@@ -124,7 +124,7 @@ fun ThemeSelectionDialog(currentTheme: String, onDismiss: () -> Unit, onThemeSel
     val themeColors = LocalThemeColors.current
     val themes = listOf("Dark", "Green", "Red", "Yellow", "Orange", "Black and White")
     AlertDialog(
-        onDismissRequest = onDismiss, containerColor = themeColors.bottomBar,
+        onDismissRequest = onDismiss, containerColor = themeColors.background,
         title = {
             Text(
                 text = stringResource(R.string.choose_theme_title),
@@ -167,7 +167,7 @@ fun AnimationSpeedSelectionDialog(currentSpeed: String, onDismiss: () -> Unit, o
     val themeColors = LocalThemeColors.current
     val speeds = listOf("High", "Medium", "Low")
     AlertDialog(
-        onDismissRequest = onDismiss, containerColor = themeColors.bottomBar,
+        onDismissRequest = onDismiss, containerColor = themeColors.background,
         title = {
             Text(
                 text = stringResource(R.string.animation_speed_label),

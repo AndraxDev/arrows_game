@@ -344,7 +344,7 @@ fun GameOverDialog(
 
     AlertDialog(
         onDismissRequest = { },
-        containerColor = themeColors.bottomBar,
+        containerColor = themeColors.background,
         title = { Text(text = stringResource(R.string.game_over_title), color = White, fontWeight = FontWeight.Bold) },
         text = {
             Text(
@@ -358,7 +358,10 @@ fun GameOverDialog(
                     onWatchAd()
                 },
                 enabled = true,
-                colors = ButtonDefaults.buttonColors(containerColor = ProgressBarGreen)
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = themeColors.accent,
+                    contentColor = themeColors.background
+                )
             ) {
                 Icon(
                     Icons.Default.VideoLabel,
@@ -368,7 +371,7 @@ fun GameOverDialog(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = stringResource(R.string.add_life_label),
-                    color = White
+                    color = themeColors.background
                 )
             }
         },

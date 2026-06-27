@@ -76,9 +76,9 @@ object GameConstants {
     // ====================
     // LEVEL PROGRESSION
     // ====================
-    const val BASE_BOARD_SIZE = 5
+    const val BASE_BOARD_SIZE = 10
     const val SIZE_REDUCTION_PER_STEP = 3
-    const val LIVES_REDUCTION_PER_STEP = 1
+    const val LIVES_REDUCTION_PER_STEP = 0
     const val LEVELS_PER_PROGRESSION_STEP = 10
     const val DEFAULT_INITIAL_LIVES = 5
     const val MIN_SNAKE_LENGTH_BASE = 3
