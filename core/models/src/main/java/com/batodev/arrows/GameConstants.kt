@@ -201,7 +201,7 @@ object GameConstants {
     // ====================
     const val CELL_CENTER = 0.5f
     const val TAP_AREA_OFFSET_FACTOR = 0.3f
-    const val DEFAULT_TOLERANCE = 1.3f
+    const val DEFAULT_TOLERANCE = 1.1f
 
     // ====================
     // WIN CELEBRATION VIDEO

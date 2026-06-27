@@ -32,17 +32,25 @@ class InputHandler {
     fun findTappedSnake(cellX: Float, cellY: Float, snakes: List<Snake>, isObstructed: (Snake) -> Boolean): Snake? {
         return snakes
             .map { snake ->
-                val head = snake.body.first()
-                val cellOffset = GameConstants.CELL_CENTER + snake.headDirection.dx * TAP_AREA_OFFSET_FACTOR
-                val tapAreaCenterX = head.x + cellOffset
-                val cellOffsetY = GameConstants.CELL_CENTER + snake.headDirection.dy * TAP_AREA_OFFSET_FACTOR
-                val tapAreaCenterY = head.y + cellOffsetY
+                // Compute minimum squared distance from tap to any body segment (prefer head offset)
+                var minDistSq = Float.POSITIVE_INFINITY
 
-                val dx = tapAreaCenterX - cellX
-                val dy = tapAreaCenterY - cellY
-                val distSq = dx * dx + dy * dy
+                snake.body.forEachIndexed { index, point ->
+                    val baseCenterX = point.x + GameConstants.CELL_CENTER
+                    val baseCenterY = point.y + GameConstants.CELL_CENTER
 
-                Triple(snake, distSq, isObstructed(snake))
+                    // For the head, bias the tap area slightly in the head direction (as before)
+                    val centerX = if (index == 0) baseCenterX + snake.headDirection.dx * TAP_AREA_OFFSET_FACTOR else baseCenterX
+                    val centerY = if (index == 0) baseCenterY + snake.headDirection.dy * TAP_AREA_OFFSET_FACTOR else baseCenterY
+
+                    val dx = centerX - cellX
+                    val dy = centerY - cellY
+                    val distSq = dx * dx + dy * dy
+
+                    if (distSq < minDistSq) minDistSq = distSq
+                }
+
+                Triple(snake, minDistSq, isObstructed(snake))
             }
             .filter { it.second <= DEFAULT_TOLERANCE * DEFAULT_TOLERANCE }
             .minWithOrNull(compareBy({ it.third }, { it.second }))
