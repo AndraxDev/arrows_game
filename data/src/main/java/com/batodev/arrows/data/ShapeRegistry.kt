@@ -1,6 +1,6 @@
 package com.batodev.arrows.data
 
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 
 object ShapeRegistry {
     val shapes = mapOf(

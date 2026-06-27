@@ -66,9 +66,8 @@ import com.batodev.arrows.data.AndroidResourceBoardShapeProvider
 import com.batodev.arrows.data.ShapeRegistry
 import com.batodev.arrows.ui.AppNavigationBar
 import com.batodev.arrows.ui.AppViewModel
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 import com.batodev.arrows.ui.NavigationDestination
-import com.batodev.arrows.ui.ads.BannerAdView
 import com.batodev.arrows.ui.theme.LocalThemeColors
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
@@ -87,7 +86,6 @@ fun GenerateScreen(
     val hasSavedLevel by appViewModel.hasSavedLevel.collectAsState()
     val isFillBoardEnabled by appViewModel.isFillBoardEnabled.collectAsState()
     val levelNumber by appViewModel.levelNumber.collectAsState()
-    val isAdFree by appViewModel.isAdFree.collectAsState()
     val themeColors = LocalThemeColors.current
     val maxSize = GenerateScreenLogic.resolveMaxSize(isFillBoardEnabled)
     var width by remember { mutableFloatStateOf(GameConstants.GENERATOR_DEFAULT_SIZE) }
@@ -110,7 +108,7 @@ fun GenerateScreen(
         )
     }
     val scaffoldState = GenerateScaffoldState(
-        context, themeColors, levelNumber, width, height, maxSize, shapes, selectedShape, isAdFree,
+        context, themeColors, levelNumber, width, height, maxSize, shapes, selectedShape,
         contentReady,
         { width = it }, { height = it }, { selectedShape = it }, onBack, onNavigateHome, onNavigateToSettings
     ) {
@@ -129,7 +127,6 @@ private data class GenerateScaffoldState(
     val maxSize: Float,
     val shapes: List<String>,
     val selectedShape: String,
-    val isAdFree: Boolean,
     val contentReady: Boolean,
     val onWidthChange: (Float) -> Unit,
     val onHeightChange: (Float) -> Unit,
@@ -163,9 +160,6 @@ private fun GenerateScaffoldContent(state: GenerateScaffoldState) {
         },
         bottomBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
-                if (!state.isAdFree) {
-                    BannerAdView()
-                }
                 AppNavigationBar(
                     selectedDestination = NavigationDestination.GENERATOR,
                     levelNumber = state.levelNumber,

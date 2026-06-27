@@ -51,12 +51,6 @@ class AppViewModel(
         initialValue = false
     )
 
-    val isWinVideosEnabled: StateFlow<Boolean> = userPreferencesRepository.isWinVideosEnabled.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(GameConstants.STOP_TIMEOUT_MILLIS),
-        initialValue = true
-    )
-
     val levelNumber: StateFlow<Int> = userPreferencesRepository.levelNumber.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(GameConstants.STOP_TIMEOUT_MILLIS),
@@ -91,18 +85,6 @@ class AppViewModel(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(GameConstants.STOP_TIMEOUT_MILLIS),
         initialValue = false
-    )
-
-    val isAdFree: StateFlow<Boolean> = userPreferencesRepository.isAdFree.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(GameConstants.STOP_TIMEOUT_MILLIS),
-        initialValue = false
-    )
-
-    val rewardAdCount: StateFlow<Int> = userPreferencesRepository.rewardAdCount.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(GameConstants.STOP_TIMEOUT_MILLIS),
-        initialValue = 0
     )
 
     val gamesCompleted: StateFlow<Int> = userPreferencesRepository.gamesCompleted.stateIn(
@@ -141,12 +123,6 @@ class AppViewModel(
         }
     }
 
-    fun saveWinVideosEnabled(enabled: Boolean) {
-        viewModelScope.launch {
-            userPreferencesRepository.saveWinVideosEnabled(enabled)
-        }
-    }
-
     fun saveAnimationSpeed(speed: String) {
         viewModelScope.launch {
             userPreferencesRepository.saveAnimationSpeed(speed)
@@ -162,24 +138,6 @@ class AppViewModel(
     fun regenerateCurrentLevel() {
         viewModelScope.launch {
             gameStateDao.clearAllSavedLevels()
-        }
-    }
-
-    fun saveIsAdFree(isAdFree: Boolean) {
-        viewModelScope.launch {
-            userPreferencesRepository.saveIsAdFree(isAdFree)
-        }
-    }
-
-    fun incrementRewardAdCount() {
-        viewModelScope.launch {
-            userPreferencesRepository.incrementRewardAdCount()
-        }
-    }
-
-    fun resetRewardAdCount() {
-        viewModelScope.launch {
-            userPreferencesRepository.resetRewardAdCount()
         }
     }
 

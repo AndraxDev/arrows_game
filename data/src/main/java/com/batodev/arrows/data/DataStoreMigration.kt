@@ -36,11 +36,8 @@ suspend fun migrateFromDataStoreIfNeeded(context: Context, dao: UserPreferencesD
             debugForcedHeight = prefs[intPreferencesKey("debug_forced_height")],
             debugForcedLives = prefs[intPreferencesKey("debug_forced_lives")],
             debugForcedShape = prefs[stringPreferencesKey("debug_forced_shape")],
-            isAdFree = prefs[booleanPreferencesKey("is_ad_free")] ?: false,
-            rewardAdCount = prefs[intPreferencesKey("reward_ad_count")] ?: 0,
             gamesCompleted = prefs[intPreferencesKey("games_completed")] ?: 0,
-            introCompleted = prefs[booleanPreferencesKey("intro_completed")] ?: false,
-            isWinVideosEnabled = prefs[booleanPreferencesKey("win_videos_enabled")] ?: false
+            introCompleted = prefs[booleanPreferencesKey("intro_completed")] ?: false
         )
 
         dao.upsert(entity)

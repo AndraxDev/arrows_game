@@ -34,23 +34,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.batodev.arrows.GameConstants
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 import com.batodev.arrows.ui.theme.HeartRed
 import com.batodev.arrows.ui.theme.LocalThemeColors
 import com.batodev.arrows.ui.theme.ProgressBarGreen
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
 
-data class HintButtonState(
-    val isAdFree: Boolean = false,
-    val isAdLoaded: Boolean = false,
-    val isAdLoading: Boolean = false
-)
-
 data class GameTopBarState(
     val lives: Int,
-    val maxLives: Int,
-    val hintState: HintButtonState = HintButtonState()
+    val maxLives: Int
 )
 
 data class GameTopBarCallbacks(
@@ -70,7 +63,7 @@ fun GameTopBar(state: GameTopBarState, callbacks: GameTopBarCallbacks) {
     ) {
         GameControls(callbacks.onBack, callbacks.onRestart, themeColors)
         HeartsDisplay(state.lives, state.maxLives)
-        HintButton(themeColors, callbacks.onHint, state.hintState)
+        HintButton(themeColors, callbacks.onHint)
     }
 }
 
@@ -121,13 +114,9 @@ private fun HeartsDisplay(lives: Int, maxLives: Int) {
 }
 
 @Composable
-private fun HintButton(themeColors: ThemeColors, onClick: () -> Unit, state: HintButtonState) {
-    val buttonText = when {
-        state.isAdFree -> stringResource(R.string.hint_label)
-        state.isAdLoading -> stringResource(R.string.loading_label)
-        else -> stringResource(R.string.hint_label)
-    }
-    val buttonEnabled = state.isAdFree || !state.isAdLoading
+private fun HintButton(themeColors: ThemeColors, onClick: () -> Unit) {
+    val buttonText = stringResource(R.string.hint_label)
+    val buttonEnabled = true
 
     Button(
         onClick = onClick,

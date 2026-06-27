@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows"
-    compileSdk = 36
+    namespace = "dev.andrax.arrows"
+    compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.batodev.arrows"
+        applicationId = "dev.andrax.arrows"
         minSdk = 29
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 9
         versionName = "1.8"
 
@@ -25,12 +25,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            manifestPlaceholders["admobAppId"] = "ca-app-pub-9667420067790140~5728073317"
+            manifestPlaceholders["admobAppId"] = "no-ads"
         }
         debug {
             enableUnitTestCoverage = true
             enableAndroidTestCoverage = true
-            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            manifestPlaceholders["admobAppId"] = "no-ads"
         }
     }
     compileOptions {
@@ -115,7 +115,6 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":core:ui"))
     implementation(project(":data"))
-    implementation(project(":ads"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

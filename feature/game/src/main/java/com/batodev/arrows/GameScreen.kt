@@ -31,7 +31,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -51,21 +50,17 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.batodev.arrows.ads.InterstitialAdManager
-import com.batodev.arrows.ads.RewardAdManager
-import com.batodev.arrows.core.resources.R
-import com.batodev.arrows.feature.game.BuildConfig
+import dev.andrax.arrows.core.resources.R
+import dev.andrax.arrows.feature.game.BuildConfig
 import com.batodev.arrows.data.GameStateDao
 import com.batodev.arrows.data.UserPreferencesRepository
 import com.batodev.arrows.engine.GameEngine
 import com.batodev.arrows.engine.GameUiState
 import com.batodev.arrows.ui.AppViewModel
-import com.batodev.arrows.ui.ads.BannerAdView
 import com.batodev.arrows.ui.game.GameProgressBar
 import com.batodev.arrows.ui.game.GameTopBar
 import com.batodev.arrows.ui.game.GameTopBarCallbacks
 import com.batodev.arrows.ui.game.GameTopBarState
-import com.batodev.arrows.ui.game.HintButtonState
 import com.batodev.arrows.ui.game.IntroFingerOverlay
 import com.batodev.arrows.ui.game.WinCelebrationScreen
 import com.batodev.arrows.ui.game.rememberIntroState
@@ -100,9 +95,6 @@ private val CONFETTI_COLORS = listOf(
 @Composable
 fun ArrowsGameView(
     appViewModel: AppViewModel,
-    isAdFree: Boolean,
-    rewardAdManager: RewardAdManager,
-    interstitialAdManager: InterstitialAdManager,
     userPreferencesRepository: UserPreferencesRepository,
     gameStateDao: GameStateDao,
     customParams: CustomGameParams = CustomGameParams(false, null, null, null),
@@ -112,14 +104,11 @@ fun ArrowsGameView(
     val view = LocalView.current
     val context = LocalContext.current
     val activity = context as? Activity
-    val isAdLoaded by rewardAdManager.isAdLoaded.collectAsState()
-    val isAdLoading by rewardAdManager.isAdLoading.collectAsState()
     val engine: GameEngine = viewModel(
         factory = createGameEngineFactory(view, context, userPreferencesRepository, gameStateDao, customParams)
     )
     val uiState = engine.uiState
     val introState = rememberIntroState(appViewModel, uiState is GameUiState.Loading, engine.level.snakes.size)
-    val isWinVideosEnabled by appViewModel.isWinVideosEnabled.collectAsState()
     var confettiState by remember { mutableStateOf<List<Party>>(emptyList()) }
     var showGuidanceLines by remember { mutableStateOf(false) }
     var showCelebrationVideo by remember { mutableStateOf(false) }
@@ -130,15 +119,15 @@ fun ArrowsGameView(
     )
     val tapAnimations = remember { androidx.compose.runtime.mutableStateListOf<TapAnimationState>() }
     val themeColors = LocalThemeColors.current
-    val gameWonParams = remember(activity, interstitialAdManager, isAdFree) {
-        GameWonStateParams(engine, appViewModel, activity ?: return@remember null, interstitialAdManager, isAdFree, onFinish = onBack)
+    val gameWonParams = remember(activity) {
+        GameWonStateParams(engine, appViewModel, activity ?: return@remember null, onFinish = onBack)
     }
     if (gameWonParams != null) {
-        HandleGameWonState(uiState, gameWonParams, isWinVideosEnabled) { showCelebrationVideo = true }
+        HandleGameWonState(uiState, gameWonParams)
     }
     confettiState = updateConfettiState(uiState, confettiState)
     val handleHint = buildHintHandler(
-        HintHandlerParams(isAdFree, isAdLoading, isAdLoaded, engine, activity, rewardAdManager)
+        HintHandlerParams(engine, activity)
     )
     val onCelebrationComplete: () -> Unit = {
         coroutineScope.launch {
@@ -155,7 +144,7 @@ fun ArrowsGameView(
         GameScreenContent(
             GameScreenContentParams(
                 engine, uiState, activity, context, tapAnimations, guidanceAlpha, showGuidanceLines,
-                themeColors, rewardAdManager, isAdFree, isAdLoaded, isAdLoading, handleHint,
+                themeColors, handleHint,
                 { showGuidanceLines = !showGuidanceLines }, showCelebrationVideo, onCelebrationComplete,
                 introState.showIntro, introState.onDismiss, onBack
             )
@@ -166,18 +155,12 @@ fun ArrowsGameView(
 @Composable
 private fun HandleGameWonState(
     uiState: GameUiState,
-    params: GameWonStateParams,
-    isWinVideosEnabled: Boolean,
-    onShowCelebration: () -> Unit
+    params: GameWonStateParams
 ) {
     val isWon = uiState is GameUiState.Won
     LaunchedEffect(isWon) {
         if (isWon) {
-            if (isWinVideosEnabled) {
-                onShowCelebration()
-            } else {
-                finishGameAfterCelebration(params, waitForConfetti = true)
-            }
+            finishGameAfterCelebration(params, waitForConfetti = true)
         }
     }
 }
@@ -240,9 +223,6 @@ private fun ColumnScope.GameArea(params: GameAreaParams) {
                 )
             }
             is GameUiState.GameOver -> GameOverDialog(
-                rewardAdManager = params.rewardAdManager,
-                activity = params.activity,
-                isAdFree = params.isAdFree,
                 onRestart = { params.engine.restartLevel() },
                 onWatchAd = { params.engine.addLife() }
             )
@@ -262,8 +242,7 @@ private fun GameScreenContent(params: GameScreenContentParams) {
         GameTopBar(
             state = GameTopBarState(
                 lives = playing?.lives ?: params.engine.lives,
-                maxLives = playing?.maxLives ?: params.engine.maxLives,
-                hintState = HintButtonState(params.isAdFree, params.isAdLoaded, params.isAdLoading)
+                maxLives = playing?.maxLives ?: params.engine.maxLives
             ),
             callbacks = GameTopBarCallbacks(
                 onRestart = { params.engine.restartLevel() },
@@ -278,13 +257,10 @@ private fun GameScreenContent(params: GameScreenContentParams) {
         GameArea(
             GameAreaParams(
                 params.engine, params.uiState, params.tapAnimations, params.guidanceAlpha,
-                params.showGuidanceLines, params.themeColors, params.rewardAdManager, params.activity,
-                params.isAdFree, params.onToggleGuidance, params.showIntro, params.onDismissIntro
+                params.showGuidanceLines, params.themeColors, params.activity,
+                params.onToggleGuidance, params.showIntro, params.onDismissIntro
             )
         )
-        if (!params.isAdFree) {
-            BannerAdView()
-        }
     }
 }
 
@@ -361,15 +337,10 @@ private fun BoxScope.LoadingOverlay(progress: Float, themeColors: ThemeColors) {
 
 @Composable
 fun GameOverDialog(
-    rewardAdManager: RewardAdManager,
-    activity: Activity?,
-    isAdFree: Boolean,
     onRestart: () -> Unit,
     onWatchAd: () -> Unit,
 ) {
     val themeColors = LocalThemeColors.current
-    val isAdLoaded by rewardAdManager.isAdLoaded.collectAsState()
-    val isAdLoading by rewardAdManager.isAdLoading.collectAsState()
 
     AlertDialog(
         onDismissRequest = { },
@@ -384,19 +355,9 @@ fun GameOverDialog(
         confirmButton = {
             Button(
                 onClick = {
-                    if (isAdFree) {
-                        onWatchAd()
-                    } else {
-                        activity?.let { act ->
-                            rewardAdManager.showRewardAd(
-                                activity = act,
-                                onRewarded = onWatchAd,
-                                onAdDismissed = { /* No action needed */ }
-                            )
-                        }
-                    }
+                    onWatchAd()
                 },
-                enabled = isAdFree || (isAdLoaded && !isAdLoading),
+                enabled = true,
                 colors = ButtonDefaults.buttonColors(containerColor = ProgressBarGreen)
             ) {
                 Icon(
@@ -406,15 +367,7 @@ fun GameOverDialog(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = if (isAdFree) {
-                        stringResource(R.string.add_life_label)
-                    } else if (isAdLoading) {
-                        stringResource(R.string.loading_ad)
-                    } else if (!isAdLoaded) {
-                        stringResource(R.string.ad_not_ready)
-                    } else {
-                        stringResource(R.string.watch_ad_label)
-                    },
+                    text = stringResource(R.string.add_life_label),
                     color = White
                 )
             }

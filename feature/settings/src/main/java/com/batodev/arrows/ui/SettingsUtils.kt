@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.widget.Toast
 import androidx.core.net.toUri
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 import com.google.android.play.core.review.ReviewManagerFactory
 
 object SettingsUtils {

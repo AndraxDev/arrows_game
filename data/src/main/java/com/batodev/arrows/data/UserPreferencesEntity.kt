@@ -18,8 +18,6 @@ data class UserPreferencesEntity(
     val debugForcedHeight: Int? = null,
     val debugForcedLives: Int? = null,
     val debugForcedShape: String? = null,
-    val isAdFree: Boolean = false,
-    val rewardAdCount: Int = 0,
     val gamesCompleted: Int = 0,
     val introCompleted: Boolean = false,
     val isWinVideosEnabled: Boolean = false

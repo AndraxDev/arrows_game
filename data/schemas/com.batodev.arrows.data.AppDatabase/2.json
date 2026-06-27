@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "24cbd50ed72f7d9a416e22049df0a5d3",
+    "identityHash": "cbc95a8992208757e70a424a23af210b",
     "entities": [
       {
         "tableName": "user_preferences",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `theme` TEXT NOT NULL, `animationSpeed` TEXT NOT NULL, `isVibrationEnabled` INTEGER NOT NULL, `isSoundsEnabled` INTEGER NOT NULL, `isFillBoardEnabled` INTEGER NOT NULL, `levelNumber` INTEGER NOT NULL, `currentLives` INTEGER NOT NULL, `debugForcedWidth` INTEGER, `debugForcedHeight` INTEGER, `debugForcedLives` INTEGER, `debugForcedShape` TEXT, `isAdFree` INTEGER NOT NULL, `rewardAdCount` INTEGER NOT NULL, `gamesCompleted` INTEGER NOT NULL, `introCompleted` INTEGER NOT NULL, `isWinVideosEnabled` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `theme` TEXT NOT NULL, `animationSpeed` TEXT NOT NULL, `isVibrationEnabled` INTEGER NOT NULL, `isSoundsEnabled` INTEGER NOT NULL, `isFillBoardEnabled` INTEGER NOT NULL, `levelNumber` INTEGER NOT NULL, `currentLives` INTEGER NOT NULL, `debugForcedWidth` INTEGER, `debugForcedHeight` INTEGER, `debugForcedLives` INTEGER, `debugForcedShape` TEXT, `gamesCompleted` INTEGER NOT NULL, `introCompleted` INTEGER NOT NULL, `isWinVideosEnabled` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -75,18 +75,6 @@
             "fieldPath": "debugForcedShape",
             "columnName": "debugForcedShape",
             "affinity": "TEXT"
-          },
-          {
-            "fieldPath": "isAdFree",
-            "columnName": "isAdFree",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "rewardAdCount",
-            "columnName": "rewardAdCount",
-            "affinity": "INTEGER",
-            "notNull": true
           },
           {
             "fieldPath": "gamesCompleted",
@@ -279,7 +267,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '24cbd50ed72f7d9a416e22049df0a5d3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cbc95a8992208757e70a424a23af210b')"
     ]
   }
 }

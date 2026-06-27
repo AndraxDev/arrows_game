@@ -53,20 +53,11 @@ interface UserPreferencesDao {
     @Query("SELECT debugForcedShape FROM user_preferences WHERE id = 1")
     fun getDebugForcedShape(): Flow<String?>
 
-    @Query("SELECT isAdFree FROM user_preferences WHERE id = 1")
-    fun getIsAdFree(): Flow<Boolean>
-
-    @Query("SELECT rewardAdCount FROM user_preferences WHERE id = 1")
-    fun getRewardAdCount(): Flow<Int>
-
     @Query("SELECT gamesCompleted FROM user_preferences WHERE id = 1")
     fun getGamesCompleted(): Flow<Int>
 
     @Query("SELECT introCompleted FROM user_preferences WHERE id = 1")
     fun getIntroCompleted(): Flow<Boolean>
-
-    @Query("SELECT isWinVideosEnabled FROM user_preferences WHERE id = 1")
-    fun getIsWinVideosEnabled(): Flow<Boolean>
 
     // Update queries
     @Query("UPDATE user_preferences SET theme = :value WHERE id = 1")
@@ -102,21 +93,9 @@ interface UserPreferencesDao {
     @Query("UPDATE user_preferences SET debugForcedShape = :value WHERE id = 1")
     suspend fun updateDebugForcedShape(value: String?)
 
-    @Query("UPDATE user_preferences SET isAdFree = :value WHERE id = 1")
-    suspend fun updateIsAdFree(value: Boolean)
-
-    @Query("UPDATE user_preferences SET rewardAdCount = rewardAdCount + 1 WHERE id = 1")
-    suspend fun incrementRewardAdCount()
-
-    @Query("UPDATE user_preferences SET rewardAdCount = 0 WHERE id = 1")
-    suspend fun resetRewardAdCount()
-
     @Query("UPDATE user_preferences SET gamesCompleted = gamesCompleted + 1 WHERE id = 1")
     suspend fun incrementGamesCompleted()
 
     @Query("UPDATE user_preferences SET introCompleted = :value WHERE id = 1")
     suspend fun updateIntroCompleted(value: Boolean)
-
-    @Query("UPDATE user_preferences SET isWinVideosEnabled = :value WHERE id = 1")
-    suspend fun updateWinVideosEnabled(value: Boolean)
 }

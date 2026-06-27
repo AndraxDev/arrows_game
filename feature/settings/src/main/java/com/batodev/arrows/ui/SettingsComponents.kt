@@ -1,6 +1,5 @@
 package com.batodev.arrows.ui
 
-import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -31,14 +30,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.batodev.arrows.GameConstants
-import com.batodev.arrows.core.resources.R
-import com.batodev.arrows.ads.RewardAdManager
+import dev.andrax.arrows.core.resources.R
 import com.batodev.arrows.ui.theme.InactiveIcon
 import com.batodev.arrows.ui.theme.LocalThemeColors
 import com.batodev.arrows.ui.theme.ThemeColors
@@ -49,7 +46,6 @@ fun PreferencesSection(params: PreferencesParams) {
     val isVibrationEnabled by params.viewModel.isVibrationEnabled.collectAsState()
     val isSoundsEnabled by params.viewModel.isSoundsEnabled.collectAsState()
     val isFillBoardEnabled by params.viewModel.isFillBoardEnabled.collectAsState()
-    val isWinVideosEnabled by params.viewModel.isWinVideosEnabled.collectAsState()
 
     SettingsGroup(params.themeColors.topBarButton) {
         SettingsSwitchItem(
@@ -60,10 +56,6 @@ fun PreferencesSection(params: PreferencesParams) {
             Icons.AutoMirrored.Filled.VolumeUp, stringResource(R.string.sounds_label),
             isSoundsEnabled, params.themeColors.accent
         ) { params.viewModel.saveSounds(it) }
-        SettingsSwitchItem(
-            Icons.Default.VideoLibrary, stringResource(R.string.win_videos_label),
-            isWinVideosEnabled, params.themeColors.accent
-        ) { params.viewModel.saveWinVideosEnabled(it) }
         SettingsSwitchItem(
             Icons.Default.Grid4x4, stringResource(R.string.fill_board_label),
             isFillBoardEnabled, params.themeColors.accent
@@ -105,18 +97,6 @@ private fun getLocalizedSpeedName(speed: String): String {
 @Composable
 fun FeedbackSection(context: Context, themeColors: ThemeColors) {
     SettingsGroup(themeColors.topBarButton) {
-        SettingsClickableItem(Icons.Default.Star, stringResource(R.string.rate_us_label)) {
-            SettingsUtils.launchReviewFlow(context)
-        }
-        SettingsClickableItem(Icons.Default.Edit, stringResource(R.string.write_us_label)) {
-            SettingsUtils.launchEmail(context)
-        }
-        SettingsClickableItem(Icons.Default.Apps, stringResource(R.string.more_games_label)) {
-            SettingsUtils.launchBrowser(
-                context,
-                "https://play.google.com/store/apps/dev?id=8228670503574649511"
-            )
-        }
         SettingsClickableItem(Icons.Default.Code, stringResource(R.string.source_code_label)) {
             SettingsUtils.launchBrowser(context, GameConstants.GITHUB_REPO_URL)
         }
@@ -124,53 +104,14 @@ fun FeedbackSection(context: Context, themeColors: ThemeColors) {
 }
 
 @Composable
-fun PurchasesSection(
-    viewModel: AppViewModel,
-    rewardAdManager: RewardAdManager,
-    themeColors: ThemeColors
-) {
-    val context = LocalContext.current
-    val activity = context as? Activity
-
-    val isAdFree by viewModel.isAdFree.collectAsState()
-    val rewardAdCount by viewModel.rewardAdCount.collectAsState()
-    val isAdLoaded by rewardAdManager.isAdLoaded.collectAsState()
-    val isAdLoading by rewardAdManager.isAdLoading.collectAsState()
-
-    SettingsGroup(themeColors.topBarButton) {
-        if (isAdFree) {
-            AdFreeSection(themeColors)
-        } else {
-            AdNotFreeSection(
-                AdSettingsSectionState(
-                    viewModel, rewardAdManager, themeColors, activity,
-                    rewardAdCount, isAdLoaded, isAdLoading
-                )
-            )
-        }
-    }
-}
-
-
-@Composable
 fun LegalSection(
     context: Context,
     themeColors: ThemeColors,
-    onLicensesClick: () -> Unit,
-    showPrivacyOptions: Boolean = false,
-    onPrivacyOptionsClick: () -> Unit = {}
+    onLicensesClick: () -> Unit
 ) {
     SettingsGroup(themeColors.topBarButton) {
         SettingsClickableItem(Icons.Default.Description, stringResource(R.string.privacy_label)) {
             SettingsUtils.launchBrowser(context, "https://robmat.github.io/privacy_policy.html")
-        }
-        if (showPrivacyOptions) {
-            SettingsClickableItem(
-                Icons.Default.Description,
-                stringResource(R.string.manage_consent_label)
-            ) {
-                onPrivacyOptionsClick()
-            }
         }
         SettingsClickableItem(Icons.Default.Description, stringResource(R.string.third_party_licenses_label)) {
             onLicensesClick()

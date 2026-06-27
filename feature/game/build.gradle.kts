@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.feature.game"
+    namespace = "dev.andrax.arrows.feature.game"
     buildFeatures {
         buildConfig = true
     }
@@ -28,7 +28,6 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":core:ui"))
-    implementation(project(":ads"))
     implementation(project(":core:resources"))
     testImplementation(project(":core:testing"))
     testImplementation(libs.appyx.testing.unit.common)

@@ -1,6 +1,5 @@
 package com.batodev.arrows
 
-import android.app.Activity
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
@@ -25,9 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.batodev.arrows.ads.ConsentManager
-import com.batodev.arrows.ads.RewardAdManager
-import com.batodev.arrows.feature.settings.BuildConfig
+import dev.andrax.arrows.feature.settings.BuildConfig
 import com.batodev.arrows.ui.AnimationSpeedSelectionDialog
 import com.batodev.arrows.ui.AppNavigationBar
 import com.batodev.arrows.ui.AppViewModel
@@ -37,23 +34,18 @@ import com.batodev.arrows.ui.LegalSection
 import com.batodev.arrows.ui.NavigationDestination
 import com.batodev.arrows.ui.PreferencesParams
 import com.batodev.arrows.ui.PreferencesSection
-import com.batodev.arrows.ui.PurchasesSection
 import com.batodev.arrows.ui.ThemeSelectionDialog
 import com.batodev.arrows.ui.ThirdPartyLicensesDialog
-import com.batodev.arrows.ui.ads.BannerAdView
 import com.batodev.arrows.ui.theme.LocalThemeColors
 
 @Composable
 fun SettingsScreen(
     viewModel: AppViewModel,
-    rewardAdManager: RewardAdManager,
-    consentManager: ConsentManager,
     onNavigateHome: () -> Unit = {},
     onNavigateToGenerate: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val levelNumber by viewModel.levelNumber.collectAsState()
-    val isAdFree by viewModel.isAdFree.collectAsState()
     val themeColors = LocalThemeColors.current
     var showThemeDialog by remember { mutableStateOf(false) }
     var showSpeedDialog by remember { mutableStateOf(false) }
@@ -73,8 +65,8 @@ fun SettingsScreen(
 
     SettingsScaffold(
         SettingsScaffoldParams(
-            viewModel, rewardAdManager, consentManager, context, themeColors,
-            levelNumber, isAdFree, currentTheme, currentSpeed,
+            viewModel, context, themeColors,
+            levelNumber, currentTheme, currentSpeed,
             { showThemeDialog = true }, { showSpeedDialog = true }, { showLicensesDialog = true },
             onNavigateHome, onNavigateToGenerate
         )
@@ -83,12 +75,9 @@ fun SettingsScreen(
 
 private data class SettingsScaffoldParams(
     val viewModel: AppViewModel,
-    val rewardAdManager: RewardAdManager,
-    val consentManager: ConsentManager,
     val context: android.content.Context,
     val themeColors: com.batodev.arrows.ui.theme.ThemeColors,
     val levelNumber: Int,
-    val isAdFree: Boolean,
     val currentTheme: String,
     val currentSpeed: String,
     val onThemeClick: () -> Unit,
@@ -131,9 +120,6 @@ private fun SettingsScaffold(params: SettingsScaffoldParams) {
         containerColor = params.themeColors.background,
         bottomBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
-                if (!params.isAdFree) {
-                    BannerAdView()
-                }
                 AppNavigationBar(
                     selectedDestination = NavigationDestination.SETTINGS,
                     levelNumber = params.levelNumber,
@@ -165,24 +151,11 @@ private fun SettingsScaffold(params: SettingsScaffoldParams) {
             Box(modifier = Modifier.settingsEntryModifier(visible, sectionIndex = 1)) {
                 FeedbackSection(params.context, params.themeColors)
             }
-            Box(modifier = Modifier.settingsEntryModifier(visible, sectionIndex = 2)) {
-                PurchasesSection(
-                    viewModel = params.viewModel,
-                    rewardAdManager = params.rewardAdManager,
-                    themeColors = params.themeColors
-                )
-            }
             Box(modifier = Modifier.settingsEntryModifier(visible, sectionIndex = 3)) {
                 LegalSection(
                     params.context,
                     params.themeColors,
                     params.onLicensesClick,
-                    showPrivacyOptions = params.consentManager.isPrivacyOptionsRequired,
-                    onPrivacyOptionsClick = {
-                        (params.context as? Activity)?.let { activity ->
-                            params.consentManager.showPrivacyOptionsForm(activity) { }
-                        }
-                    }
                 )
             }
             if (BuildConfig.DRAW_DEBUG_STUFF) DebugMenu(params.viewModel)

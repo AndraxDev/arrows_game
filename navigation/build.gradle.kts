@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.navigation"
+    namespace = "dev.andrax.arrows.navigation"
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
@@ -17,7 +17,6 @@ dependencies {
     implementation(project(":feature:game"))
     implementation(project(":feature:generate"))
     implementation(project(":feature:settings"))
-    implementation(project(":ads"))
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockito.core)

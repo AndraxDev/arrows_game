@@ -15,8 +15,6 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.batodev.arrows.ArrowsGameView
 import com.batodev.arrows.CustomGameParams
-import com.batodev.arrows.ads.InterstitialAdManager
-import com.batodev.arrows.ads.RewardAdManager
 import com.batodev.arrows.data.GameStateDao
 import com.batodev.arrows.data.UserPreferencesRepository
 import com.batodev.arrows.ui.AppViewModel
@@ -34,8 +32,6 @@ class GameNode(
     private val onBack: () -> Unit
 ) : Node(buildContext), KoinComponent {
 
-    private val rewardAdManager: RewardAdManager by inject()
-    private val interstitialAdManager: InterstitialAdManager by inject()
     private val userPreferencesRepository: UserPreferencesRepository by inject()
     private val gameStateDao: GameStateDao by inject()
 
@@ -58,7 +54,6 @@ class GameNode(
 
     @Composable
     private fun GameContent(modifier: Modifier) {
-        val isAdFree by appViewModel.isAdFree.collectAsState()
         val themeColors = LocalThemeColors.current
         Scaffold(
             modifier = modifier.fillMaxSize(),
@@ -67,9 +62,6 @@ class GameNode(
             Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
                 ArrowsGameView(
                     appViewModel = appViewModel,
-                    isAdFree = isAdFree,
-                    rewardAdManager = rewardAdManager,
-                    interstitialAdManager = interstitialAdManager,
                     userPreferencesRepository = userPreferencesRepository,
                     gameStateDao = gameStateDao,
                     customParams = customParams,

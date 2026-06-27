@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.feature.settings"
+    namespace = "dev.andrax.arrows.feature.settings"
     buildFeatures {
         buildConfig = true
     }
@@ -31,6 +31,5 @@ dependencies {
     implementation(libs.play.review.ktx)
     implementation(project(":feature:home"))
     implementation(project(":core:ui"))
-    implementation(project(":ads"))
     implementation(project(":core:resources"))
 }

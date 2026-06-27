@@ -18,9 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.batodev.arrows.ads.InterstitialAdManager
-import com.batodev.arrows.ads.RewardAdManager
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 import com.batodev.arrows.data.AndroidResourceBoardShapeProvider
 import com.batodev.arrows.data.GameStateDao
 import com.batodev.arrows.data.UserPreferencesRepository
@@ -37,8 +35,6 @@ data class GameWonStateParams(
     val engine: GameEngine,
     val viewModel: AppViewModel,
     val activity: Activity,
-    val interstitialAdManager: InterstitialAdManager,
-    val isAdFree: Boolean,
     val onFinish: () -> Unit = {}
 )
 
@@ -49,9 +45,7 @@ data class GameAreaParams(
     val guidanceAlpha: Float,
     val showGuidanceLines: Boolean,
     val themeColors: ThemeColors,
-    val rewardAdManager: RewardAdManager,
     val activity: Activity?,
-    val isAdFree: Boolean,
     val onToggleGuidance: () -> Unit,
     val showIntro: Boolean,
     val onDismissIntro: () -> Unit
@@ -66,10 +60,6 @@ data class GameScreenContentParams(
     val guidanceAlpha: Float,
     val showGuidanceLines: Boolean,
     val themeColors: ThemeColors,
-    val rewardAdManager: RewardAdManager,
-    val isAdFree: Boolean,
-    val isAdLoaded: Boolean,
-    val isAdLoading: Boolean,
     val handleHint: () -> Unit,
     val onToggleGuidance: () -> Unit,
     val showCelebrationVideo: Boolean,
@@ -80,30 +70,12 @@ data class GameScreenContentParams(
 )
 
 data class HintHandlerParams(
-    val isAdFree: Boolean,
-    val isAdLoading: Boolean,
-    val isAdLoaded: Boolean,
     val engine: GameEngine,
-    val activity: Activity?,
-    val rewardAdManager: RewardAdManager
+    val activity: Activity?
 )
 
 fun buildHintHandler(params: HintHandlerParams): () -> Unit = {
-    when {
-        params.isAdFree -> params.engine.showHint()
-        params.isAdLoading -> { /* Do nothing while ad is loading */ }
-        !params.isAdLoaded -> params.engine.showHint() // Ad failed to load
-        else -> {
-            var wasRewarded = false
-            params.activity?.let { act ->
-                params.rewardAdManager.showRewardAd(
-                    activity = act,
-                    onRewarded = { wasRewarded = true },
-                    onAdDismissed = { if (wasRewarded) params.engine.showHint() }
-                )
-            }
-        }
-    }
+    params.engine.showHint()
 }
 
 fun createGameEngineFactory(
@@ -182,12 +154,5 @@ suspend fun finishGameAfterCelebration(params: GameWonStateParams, waitForConfet
         delay(GameConstants.GAME_WON_EXIT_DELAY)
     }
     params.viewModel.incrementGamesCompleted()
-    val gamesCompleted = params.viewModel.gamesCompleted.value
-    if (shouldShowInterstitialAd(params.isAdFree, gamesCompleted)) {
-        params.interstitialAdManager.showInterstitialAd(params.activity) {
-            params.onFinish()
-        }
-    } else {
-        params.onFinish()
-    }
+    params.onFinish()
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.media.MediaPlayer
 import android.util.Log
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 import kotlin.random.Random
 
 class SoundManager(private val context: Context) {

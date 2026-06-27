@@ -43,12 +43,6 @@ class FakeUserPreferencesRepository : IUserPreferencesRepository {
     val debugForcedShapeFlow = MutableStateFlow<String?>(null)
     override val debugForcedShape: Flow<String?> = debugForcedShapeFlow
 
-    val isAdFreeFlow = MutableStateFlow(false)
-    override val isAdFree: Flow<Boolean> = isAdFreeFlow
-
-    val rewardAdCountFlow = MutableStateFlow(0)
-    override val rewardAdCount: Flow<Int> = rewardAdCountFlow
-
     val gamesCompletedFlow = MutableStateFlow(0)
     override val gamesCompleted: Flow<Int> = gamesCompletedFlow
 
@@ -69,9 +63,6 @@ class FakeUserPreferencesRepository : IUserPreferencesRepository {
     override suspend fun saveDebugForcedHeight(height: Int?) { debugForcedHeightFlow.value = height }
     override suspend fun saveDebugForcedLives(lives: Int?) { debugForcedLivesFlow.value = lives }
     override suspend fun saveDebugForcedShape(shape: String?) { debugForcedShapeFlow.value = shape }
-    override suspend fun saveIsAdFree(isAdFree: Boolean) { isAdFreeFlow.value = isAdFree }
-    override suspend fun incrementRewardAdCount() { rewardAdCountFlow.value += 1 }
-    override suspend fun resetRewardAdCount() { rewardAdCountFlow.value = 0 }
     override suspend fun incrementGamesCompleted() { gamesCompletedFlow.value += 1 }
     override suspend fun saveIntroCompleted(completed: Boolean) { introCompletedFlow.value = completed }
     override suspend fun saveWinVideosEnabled(enabled: Boolean) { winVideosEnabledFlow.value = enabled }

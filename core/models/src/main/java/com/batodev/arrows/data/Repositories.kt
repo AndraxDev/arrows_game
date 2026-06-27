@@ -25,11 +25,8 @@ interface IUserPreferencesRepository {
     val debugForcedHeight: Flow<Int?>
     val debugForcedLives: Flow<Int?>
     val debugForcedShape: Flow<String?>
-    val isAdFree: Flow<Boolean>
-    val rewardAdCount: Flow<Int>
     val gamesCompleted: Flow<Int>
     val introCompleted: Flow<Boolean>
-    val isWinVideosEnabled: Flow<Boolean>
 
     suspend fun saveThemePreference(theme: String)
     suspend fun saveAnimationSpeed(speed: String)
@@ -42,10 +39,6 @@ interface IUserPreferencesRepository {
     suspend fun saveDebugForcedHeight(height: Int?)
     suspend fun saveDebugForcedLives(lives: Int?)
     suspend fun saveDebugForcedShape(shape: String?)
-    suspend fun saveIsAdFree(isAdFree: Boolean)
-    suspend fun incrementRewardAdCount()
-    suspend fun resetRewardAdCount()
     suspend fun saveIntroCompleted(completed: Boolean)
-    suspend fun saveWinVideosEnabled(enabled: Boolean)
     suspend fun incrementGamesCompleted()
 }

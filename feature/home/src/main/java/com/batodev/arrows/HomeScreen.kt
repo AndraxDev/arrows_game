@@ -37,11 +37,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.batodev.arrows.core.resources.R
+import dev.andrax.arrows.core.resources.R
 import com.batodev.arrows.ui.AppNavigationBar
 import com.batodev.arrows.ui.AppViewModel
 import com.batodev.arrows.ui.NavigationDestination
-import com.batodev.arrows.ui.ads.BannerAdView
 import com.batodev.arrows.ui.theme.LocalThemeColors
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
@@ -55,7 +54,6 @@ fun MainScreen(
 ) {
     val hasSavedLevel by appViewModel.hasSavedLevel.collectAsState()
     val levelNumber by appViewModel.levelNumber.collectAsState()
-    val isAdFree by appViewModel.isAdFree.collectAsState()
     val themeColors = LocalThemeColors.current
     var visible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
@@ -64,9 +62,6 @@ fun MainScreen(
         containerColor = themeColors.background,
         bottomBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
-                if (!isAdFree) {
-                    BannerAdView()
-                }
                 AppNavigationBar(
                     selectedDestination = NavigationDestination.HOME,
                     levelNumber = levelNumber,

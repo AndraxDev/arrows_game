@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.core.ui"
+    namespace = "dev.andrax.arrows.core.ui"
 }
 
 dependencies {

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.feature.generate"
+    namespace = "dev.andrax.arrows.feature.generate"
 }
 
 dependencies {

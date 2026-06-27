@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.core.testing"
+    namespace = "dev.andrax.arrows.core.testing"
 }
 
 dependencies {

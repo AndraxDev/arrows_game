@@ -1,6 +1,5 @@
 package com.batodev.arrows.data
 
-import com.batodev.arrows.data.IUserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 
 // Room DAOs and preference repositories mirror a single DB table's columns;
@@ -20,11 +19,8 @@ class UserPreferencesRepository(private val dao: UserPreferencesDao) : IUserPref
     override val debugForcedHeight: Flow<Int?> get() = dao.getDebugForcedHeight()
     override val debugForcedLives: Flow<Int?> get() = dao.getDebugForcedLives()
     override val debugForcedShape: Flow<String?> get() = dao.getDebugForcedShape()
-    override val isAdFree: Flow<Boolean> get() = dao.getIsAdFree()
-    override val rewardAdCount: Flow<Int> get() = dao.getRewardAdCount()
     override val gamesCompleted: Flow<Int> get() = dao.getGamesCompleted()
     override val introCompleted: Flow<Boolean> get() = dao.getIntroCompleted()
-    override val isWinVideosEnabled: Flow<Boolean> get() = dao.getIsWinVideosEnabled()
 
     override suspend fun saveThemePreference(theme: String) = dao.updateTheme(theme)
     override suspend fun saveAnimationSpeed(speed: String) = dao.updateAnimationSpeed(speed)
@@ -37,10 +33,6 @@ class UserPreferencesRepository(private val dao: UserPreferencesDao) : IUserPref
     override suspend fun saveDebugForcedHeight(height: Int?) = dao.updateDebugForcedHeight(height)
     override suspend fun saveDebugForcedLives(lives: Int?) = dao.updateDebugForcedLives(lives)
     override suspend fun saveDebugForcedShape(shape: String?) = dao.updateDebugForcedShape(shape)
-    override suspend fun saveIsAdFree(isAdFree: Boolean) = dao.updateIsAdFree(isAdFree)
-    override suspend fun incrementRewardAdCount() = dao.incrementRewardAdCount()
-    override suspend fun resetRewardAdCount() = dao.resetRewardAdCount()
     override suspend fun saveIntroCompleted(completed: Boolean) = dao.updateIntroCompleted(completed)
-    override suspend fun saveWinVideosEnabled(enabled: Boolean) = dao.updateWinVideosEnabled(enabled)
     override suspend fun incrementGamesCompleted() = dao.incrementGamesCompleted()
 }

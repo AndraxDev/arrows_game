@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.batodev.arrows.data"
+    namespace = "dev.andrax.arrows.data"
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }

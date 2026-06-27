@@ -26,19 +26,6 @@ class MainActivity : ComponentActivity(), IntegrationPointProvider {
         appyxV1IntegrationPoint = ActivityIntegrationPoint(this, savedInstanceState)
         enableEdgeToEdge()
 
-        val application = applicationContext as ArrowsApplication
-        val consentManager = application.consentManager()
-
-        consentManager.gatherConsent(this) {
-            if (consentManager.canRequestAds) {
-                application.initializeAds()
-            }
-        }
-
-        if (consentManager.canRequestAds) {
-            application.initializeAds()
-        }
-
         setContent {
             val currentTheme by appViewModel.theme.collectAsState()
             ArrowsTheme(themeName = currentTheme) {

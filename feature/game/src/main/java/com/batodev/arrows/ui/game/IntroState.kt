@@ -8,9 +8,8 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.batodev.arrows.feature.game.BuildConfig
+import dev.andrax.arrows.feature.game.BuildConfig
 import com.batodev.arrows.ui.AppViewModel
-import kotlinx.coroutines.CoroutineScope
 
 data class IntroState(val showIntro: Boolean, val onDismiss: () -> Unit)
 
