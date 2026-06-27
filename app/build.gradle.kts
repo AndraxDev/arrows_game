@@ -12,8 +12,8 @@ android {
         applicationId = "dev.andrax.arrows"
         minSdk = 29
         targetSdk = 37
-        versionCode = 9
-        versionName = "1.8"
+        versionCode = 20
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,17 +25,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            manifestPlaceholders["admobAppId"] = "no-ads"
         }
         debug {
             enableUnitTestCoverage = true
             enableAndroidTestCoverage = true
-            manifestPlaceholders["admobAppId"] = "no-ads"
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     buildFeatures {
         compose = true
