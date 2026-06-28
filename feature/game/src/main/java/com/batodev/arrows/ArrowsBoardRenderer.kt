@@ -114,11 +114,42 @@ object ArrowsBoardRenderer {
                 flashPulseAlpha = flashPulseAlpha,
                 themeColors = themeColors
             )
+            drawDots(level, metrics)
             drawSnakes(drawingParams)
 
             drawContext.canvas.restore()
         }
     }
+
+    private fun DrawScope.drawDots(level: GameLevel, metrics: BoardMetrics) {
+        val radius = metrics.cellWidth * GameConstants.DOT_RADIUS_FACTOR
+        for (y in 0 until level.height) {
+            for (x in 0 until level.width) {
+                val cx = x * metrics.cellWidth + metrics.cellWidth / 2
+                val cy = y * metrics.cellHeight + metrics.cellHeight / 2
+                drawCircle(
+                    color = LightGray.copy(alpha = 0.2f),
+                    radius = radius,
+                    center = Offset(cx, cy)
+                )
+            }
+        }
+    }
+
+//    private fun DrawScope.drawDots(level: GameLevel, metrics: BoardMetrics) {
+//        val radius = metrics.cellWidth * GameConstants.DOT_RADIUS_FACTOR
+//        // Only draw dots where a snake occupies the cell
+//        val occupied = level.snakes.flatMap { it.body }.toSet()
+//        occupied.forEach { point ->
+//            val cx = point.x * metrics.cellWidth + metrics.cellWidth / 2
+//            val cy = point.y * metrics.cellHeight + metrics.cellHeight / 2
+//            drawCircle(
+//                color = LightGray.copy(alpha = 0.2f),
+//                radius = radius,
+//                center = Offset(cx, cy)
+//            )
+//        }
+//    }
 
     private fun calculateBoardMetrics(level: GameLevel, canvasSize: Size): BoardMetrics {
         val cellSize = min(canvasSize.width / level.width, canvasSize.height / level.height)

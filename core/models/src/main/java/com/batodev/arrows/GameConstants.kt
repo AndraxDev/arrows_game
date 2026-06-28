@@ -157,7 +157,7 @@ object GameConstants {
     const val SINGLE_BLOCK_TAIL_FACTOR = 0.2f
     const val ARROW_HEAD_SIZE_FACTOR = 0.2f
     const val BOARD_STROKE_WIDTH_FACTOR = 0.15f
-    const val BOARD_CORNER_RADIUS_FACTOR = 0.3f
+    const val BOARD_CORNER_RADIUS_FACTOR = 0.25f
     const val SNAKE_MOVE_DIST_FACTOR = 1.2f
     const val ARROW_HEAD_STROKE_WIDTH_FACTOR = 0.3f
     const val FLASH_DURATION_MS = 3000L
@@ -212,4 +212,10 @@ object GameConstants {
     const val WIN_VIDEOS_COUNT = 26
     const val VIDEO_PREPARATION_DELAY = 50L
     const val CONGRATULATIONS_FONT_SIZE = 32
+
+    // ====================
+    // OTHER PARAMS
+    // ====================
+
+    const val DOT_RADIUS_FACTOR = 0.08f
 }
