@@ -207,7 +207,7 @@ private fun WarningDialog(themeColors: ThemeColors, onConfirm: () -> Unit, onDis
         title = { Text(stringResource(R.string.custom_gen_warning_title), color = White) },
         text = { Text(stringResource(R.string.custom_gen_warning_message), color = White) },
         confirmButton = {
-            Button(onClick = { onConfirm(); onDismiss() }) {
+            Button(onClick = { onConfirm(); onDismiss() }, colors = ButtonDefaults.buttonColors(containerColor = themeColors.accent, contentColor = themeColors.background)) {
                 Text(stringResource(R.string.proceed_label))
             }
         },
