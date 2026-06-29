@@ -11,13 +11,13 @@ class ArrowsKotlinJvmPlugin : Plugin<Project> {
 
             extensions.configure<KotlinJvmProjectExtension> {
                 compilerOptions {
-                    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+                    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
                 }
             }
 
             extensions.configure<org.gradle.api.plugins.JavaPluginExtension> {
-                sourceCompatibility = JavaVersion.VERSION_11
-                targetCompatibility = JavaVersion.VERSION_11
+                sourceCompatibility = JavaVersion.VERSION_21
+                targetCompatibility = JavaVersion.VERSION_21
             }
         }
     }

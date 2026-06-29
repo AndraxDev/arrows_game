@@ -27,7 +27,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CropSquare
 import androidx.compose.material3.Button
@@ -36,8 +35,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -145,17 +142,6 @@ private fun GenerateScaffoldContent(state: GenerateScaffoldState) {
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.custom_gen_title), color = White) },
-                navigationIcon = {
-                    IconButton(
-                        onClick = state.onBack,
-                        colors = IconButtonDefaults.iconButtonColors(contentColor = White)
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.content_description_back)
-                        )
-                    }
-                },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = state.themeColors.background)
             )
         },
@@ -422,7 +408,7 @@ private fun SizeSlider(
     var scaleUp by remember { mutableStateOf(false) }
     LaunchedEffect(intValue) {
         scaleUp = true
-        delay(GameConstants.GENERATOR_VALUE_SCALE_HOLD_MS)
+        delay(GameConstants.GENERATOR_VALUE_SCALE_HOLD_MS.milliseconds)
         scaleUp = false
     }
     val valueTextScale by animateFloatAsState(
@@ -506,7 +492,7 @@ private fun ShapeItem(
             .clickable { onClick() },
         colors = CardDefaults.cardColors(
             containerColor = containerColor,
-            contentColor = if (isSelected) themeColors.background else White
+            contentColor = if (isSelected) themeColors.background else themeColors.accent
         ),
         shape = MaterialTheme.shapes.medium
     ) {

@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 class RemovalAnimator(private val coroutineScope: CoroutineScope) {
     var removalProgress by mutableStateOf<Map<Int, Float>>(emptyMap())
@@ -23,7 +24,7 @@ class RemovalAnimator(private val coroutineScope: CoroutineScope) {
             removalProgress = removalProgress.toMutableMap().apply { put(snakeId, 0f) }
             var elapsed = 0L
             while (elapsed < durationMs && isActive) {
-                delay(GameConstants.REMOVAL_FRAME_DELAY_MS)
+                delay(GameConstants.REMOVAL_FRAME_DELAY_MS.milliseconds)
                 elapsed += GameConstants.REMOVAL_FRAME_DELAY_MS
                 val linearP = (elapsed.toFloat() / durationMs).coerceIn(0f, 1f)
                 val p = linearP * linearP * linearP

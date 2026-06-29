@@ -11,9 +11,6 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-
-
-val LightCyan = Color(0xFF4CC9F0)
 val BottomBarBackground = Color(0xFF2A2C3E)
 val InactiveIcon = Color(0xFF6C6E85)
 
@@ -23,7 +20,6 @@ val ProgressBarGreen = Color(0xFF00E676)
 val White = Color(0xFFFFFFFF)
 val LightGray = Color(0xFFD3D3D3)
 val FlashingRed = Color(0xFFFF0000)
-val NavigationIndicator = Color(0xFF3E4155)
 
 // Blueish Theme
 val AccentBlue = Color(0xFFC4CFFF)
@@ -59,3 +55,8 @@ val PurpleSnake = Color(0xFFAC89FF)
 val BWBackground = Color(0xFF000000)
 val BWAccent = Color(0xFFFFFFFF)
 val BWSnake = Color(0xFFE0E0E0)
+
+// Black and White Theme
+val AMOLED_DARK_ROOM_BACKGROUND = Color(0xFF000000)
+val AMOLED_DARK_ROOM_RED = Color(0xFFFF0638)
+val AMOLED_DARK_ROOM_RED_SNAKE = Color(0xFFFF667D)

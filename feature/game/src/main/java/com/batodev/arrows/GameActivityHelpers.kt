@@ -30,6 +30,7 @@ import com.batodev.arrows.ui.AppViewModel
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 data class GameWonStateParams(
     val engine: GameEngine,
@@ -151,7 +152,7 @@ fun shouldShowInterstitialAd(isAdFree: Boolean, gamesCompleted: Int): Boolean {
 
 suspend fun finishGameAfterCelebration(params: GameWonStateParams, waitForConfetti: Boolean) {
     if (waitForConfetti) {
-        delay(GameConstants.GAME_WON_EXIT_DELAY)
+        delay(GameConstants.GAME_WON_EXIT_DELAY.milliseconds)
     }
     params.viewModel.incrementGamesCompleted()
     params.onFinish()

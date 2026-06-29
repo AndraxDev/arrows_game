@@ -48,8 +48,7 @@ class BoardImageProcessor {
         val green = (pixel shr GameConstants.GREEN_SHIFT) and GameConstants.COLOR_MASK
         val blue = pixel and GameConstants.COLOR_MASK
         
-        return alpha > GameConstants.COLOR_THRESHOLD &&
-                red < GameConstants.COLOR_THRESHOLD &&
+        return GameConstants.COLOR_THRESHOLD in (red + 1)..<alpha &&
                 green < GameConstants.COLOR_THRESHOLD &&
                 blue < GameConstants.COLOR_THRESHOLD
     }

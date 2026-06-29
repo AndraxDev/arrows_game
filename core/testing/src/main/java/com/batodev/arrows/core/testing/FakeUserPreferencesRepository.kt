@@ -49,9 +49,6 @@ class FakeUserPreferencesRepository : IUserPreferencesRepository {
     val introCompletedFlow = MutableStateFlow(false)
     override val introCompleted: Flow<Boolean> = introCompletedFlow
 
-    val winVideosEnabledFlow = MutableStateFlow(true)
-    override val isWinVideosEnabled: Flow<Boolean> = winVideosEnabledFlow
-
     override suspend fun saveThemePreference(theme: String) { themeFlow.value = theme }
     override suspend fun saveVibrationPreference(enabled: Boolean) { vibrationFlow.value = enabled }
     override suspend fun saveSoundsPreference(enabled: Boolean) { soundsFlow.value = enabled }
@@ -65,5 +62,4 @@ class FakeUserPreferencesRepository : IUserPreferencesRepository {
     override suspend fun saveDebugForcedShape(shape: String?) { debugForcedShapeFlow.value = shape }
     override suspend fun incrementGamesCompleted() { gamesCompletedFlow.value += 1 }
     override suspend fun saveIntroCompleted(completed: Boolean) { introCompletedFlow.value = completed }
-    override suspend fun saveWinVideosEnabled(enabled: Boolean) { winVideosEnabledFlow.value = enabled }
 }

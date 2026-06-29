@@ -8,6 +8,7 @@ import com.batodev.arrows.SoundManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 class TapHandler(
     private val coroutineScope: CoroutineScope,
@@ -29,7 +30,7 @@ class TapHandler(
     fun flashSnake(snakeId: Int) {
         flashingSnakeId = snakeId
         coroutineScope.launch {
-            delay(GameConstants.FLASH_DURATION_MS)
+            delay(GameConstants.FLASH_DURATION_MS.milliseconds)
             if (flashingSnakeId == snakeId) flashingSnakeId = null
         }
     }

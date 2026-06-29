@@ -11,14 +11,14 @@ object GameConstants {
     // ====================
     // GAME PROGRESSION
     // ====================
-    const val GENERATOR_UNLOCK_LEVEL = 20
+    const val GENERATOR_UNLOCK_LEVEL = 0
 
     // ====================
     // CUSTOM GENERATOR UI
     // ====================
-    const val GENERATOR_MIN_SIZE = 20f
+    const val GENERATOR_MIN_SIZE = 10f
     const val GENERATOR_MAX_SIZE = 100f
-    const val GENERATOR_MAX_SIZE_FILL_BOARD = 35f
+    const val GENERATOR_MAX_SIZE_FILL_BOARD = 50f
     const val GENERATOR_DEFAULT_SIZE = 35f
     const val SHAPE_TYPE_RECTANGULAR = "rectangular"
     const val SHAPE_ICON_SIZE = 32
@@ -185,11 +185,6 @@ object GameConstants {
     // ====================
     const val DEFAULT_LEVEL = 1
     const val DEFAULT_LIVES = 5
-
-    // ====================
-    // ADS
-    // ====================
-    const val REQUIRED_AD_COUNT_FOR_AD_FREE = 30
 
     // ====================
     // EXTERNAL LINKS

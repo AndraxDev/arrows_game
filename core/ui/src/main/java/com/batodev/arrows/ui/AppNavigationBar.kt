@@ -15,8 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.batodev.arrows.GameConstants
 import dev.andrax.arrows.core.resources.R
-import com.batodev.arrows.ui.theme.InactiveIcon
-import com.batodev.arrows.ui.theme.NavigationIndicator
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
 
@@ -36,7 +34,7 @@ fun AppNavigationBar(
         contentColor = White
     ) {
         GeneratorNavigationItem(
-            isUnlocked = /*isGeneratorUnlocked,*/ true, /* temp debug */
+            isUnlocked = isGeneratorUnlocked,
             selected = selectedDestination == NavigationDestination.GENERATOR,
             themeColors = themeColors,
             onNavigate = onNavigateToGenerate

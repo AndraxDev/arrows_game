@@ -55,7 +55,11 @@ private fun getThemeColors(themeName: String, context: Context): ThemeColors = w
     )
     "Black and White" -> ThemeColors(
         BWBackground, BWAccent, BWSnake,
-        BWAccent.copy(alpha = 0.2f), BWBackground.copy(alpha = 0.8f)
+        BWAccent.copy(alpha = 0.1f), BWBackground.copy(alpha = 0.8f)
+    )
+    "Dark Room (red)" -> ThemeColors(
+        AMOLED_DARK_ROOM_BACKGROUND, AMOLED_DARK_ROOM_RED, AMOLED_DARK_ROOM_RED_SNAKE,
+        AMOLED_DARK_ROOM_RED.copy(alpha = 0.1f), AMOLED_DARK_ROOM_BACKGROUND.copy(alpha = 0.8f)
     )
     "Blue" -> ThemeColors(
         BlueBackground, AccentBlue, SnakeBlue,

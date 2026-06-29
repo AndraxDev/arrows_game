@@ -10,16 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
-import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Description
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Grid4x4
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Speed
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Vibration
-import androidx.compose.material.icons.filled.VideoLibrary
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -82,6 +78,7 @@ private fun getLocalizedThemeName(theme: String): String {
         "Blue" -> stringResource(R.string.theme_blue)
         "Purple" -> stringResource(R.string.theme_purple)
         "Black and White" -> stringResource(R.string.theme_bw)
+        "Dark Room (red)" -> stringResource(R.string.theme_dark_room_red)
         else -> theme
     }
 }
@@ -124,7 +121,7 @@ fun LegalSection(
 @Composable
 fun ThemeSelectionDialog(currentTheme: String, onDismiss: () -> Unit, onThemeSelected: (String) -> Unit) {
     val themeColors = LocalThemeColors.current
-    val themes = listOf("Dark", "Green", "Red", "Yellow", "Orange", "Blue", "Purple", "Black and White")
+    val themes = listOf("Dark", "Green", "Red", "Yellow", "Orange", "Blue", "Purple", "Black and White", "Dark Room (red)")
     AlertDialog(
         onDismissRequest = onDismiss, containerColor = themeColors.background,
         title = {

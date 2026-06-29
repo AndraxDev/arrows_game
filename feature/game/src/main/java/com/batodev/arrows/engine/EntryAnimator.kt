@@ -10,6 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlin.math.pow
+import kotlin.time.Duration.Companion.milliseconds
 
 class EntryAnimator(private val coroutineScope: CoroutineScope) {
     companion object {
@@ -52,7 +53,7 @@ class EntryAnimator(private val coroutineScope: CoroutineScope) {
 
             val job = coroutineScope.launch {
                 if (delayMs > 0) {
-                    delay(delayMs)
+                    delay(delayMs.milliseconds)
                 }
                 if (!isActive) return@launch
 
@@ -69,7 +70,7 @@ class EntryAnimator(private val coroutineScope: CoroutineScope) {
                         entryProgress = entryProgress.toMutableMap().apply { remove(snakeId) }
                         break
                     }
-                    delay(frameDelay)
+                    delay(frameDelay.milliseconds)
                 }
             }
             entryJobs.add(job)
@@ -78,7 +79,7 @@ class EntryAnimator(private val coroutineScope: CoroutineScope) {
         // Clear isEntryAnimating after all snakes finish
         val totalDuration = stagger * (sortedSnakes.size - 1) + duration + COMPLETION_BUFFER_MS
         val completionJob = coroutineScope.launch {
-            delay(totalDuration)
+            delay(totalDuration.milliseconds)
             if (isActive) {
                 isEntryAnimating = false
             }

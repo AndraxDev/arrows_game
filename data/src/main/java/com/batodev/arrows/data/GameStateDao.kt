@@ -4,10 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.batodev.arrows.data.GameLevelData
-import com.batodev.arrows.data.PointData
-import com.batodev.arrows.data.SnakeData
-import com.batodev.arrows.data.SnakeSaveData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
