@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Vite forzate</string>
     <string name="forced_shape_label">Forma forzata</string>
     <string name="forced_width_label">Larghezza forzata</string>
-    <string name="game_over_message">Hai esaurito le vite! Vuoi riavviare il forum o guardare una pubblicità?</string>
+    <string name="game_over_message">Hai esaurito le vite!</string>
     <string name="game_over_title">Game Over</string>
     <string name="generate_start_label">Genera e avvia</string>
     <string name="generating_progress">Generazione in corso… %1$d%%</string>

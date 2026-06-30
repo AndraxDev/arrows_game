@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Forced Lives</string>
     <string name="forced_shape_label">Forced Shape</string>
     <string name="forced_width_label">Forced Width</string>
-    <string name="game_over_message">You are out of lives! Would you like to restart the board or watch an ad?</string>
+    <string name="game_over_message">You are out of lives!</string>
     <string name="game_over_title">Game Over</string>
     <string name="generate_start_label">Generate &amp; Start</string>
     <string name="generating_progress">Generating… %1$d%%</string>

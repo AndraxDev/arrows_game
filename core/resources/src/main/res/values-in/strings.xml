@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Kehidupan yang Dipaksa</string>
     <string name="forced_shape_label">Bentuk Paksa</string>
     <string name="forced_width_label">Lebar Paksa</string>
-    <string name="game_over_message">Nyawa Anda habis! Apakah Anda ingin memulai ulang papan permainan atau menonton iklan?</string>
+    <string name="game_over_message">Nyawa Anda habis!</string>
     <string name="game_over_title">Permainan Berakhir</string>
     <string name="generate_start_label">Hasilkan &amp; Mulai</string>
     <string name="generating_progress">Menghasilkan… %1$d%%</string>

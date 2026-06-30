@@ -43,7 +43,7 @@
     <string name="forced_lives_label">حياة قسرية</string>
     <string name="forced_shape_label">شكل قسري</string>
     <string name="forced_width_label">العرض القسري</string>
-    <string name="game_over_message">لقد نفدت محاولاتك! هل ترغب في إعادة تشغيل اللوحة أم مشاهدة إعلان؟</string>
+    <string name="game_over_message">لقد نفدت محاولاتك! هل ترغب في إ</string>
     <string name="game_over_title">انتهت اللعبة</string>
     <string name="generate_start_label">إنشاء وبدء التشغيل</string>
     <string name="generating_progress">جارٍ إنشاء… %1$d%%</string>

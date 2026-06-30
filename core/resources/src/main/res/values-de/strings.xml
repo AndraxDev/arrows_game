@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Erzwungene Leben</string>
     <string name="forced_shape_label">erzwungene Form</string>
     <string name="forced_width_label">erzwungene Breite</string>
-    <string name="game_over_message">Du hast keine Leben mehr! Möchtest du das Spiel neu starten oder eine Werbung ansehen?</string>
+    <string name="game_over_message">Du hast keine Leben mehr!</string>
     <string name="game_over_title">Spiel vorbei</string>
     <string name="generate_start_label">Generieren &amp; Starten</string>
     <string name="generating_progress">Generiere… %1$d%%</string>

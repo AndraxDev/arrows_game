@@ -43,7 +43,7 @@
     <string name="forced_lives_label">জোরপূর্বক জীবন</string>
     <string name="forced_shape_label">জোরপূর্বক আকৃতি</string>
     <string name="forced_width_label">জোরপূর্বক প্রস্থ</string>
-    <string name="game_over_message">তোমার আর জীবন নেই! তুমি কি বোর্ডটি পুনরায় চালু করতে চাও নাকি বিজ্ঞাপন দেখতে চাও?</string>
+    <string name="game_over_message">তোমার আর জীবন নেই!</string>
     <string name="game_over_title">খেলা শেষ</string>
     <string name="generate_start_label">তৈরি করুন এবং শুরু করুন</string>
     <string name="generating_progress">তৈরি হচ্ছে… %1$d%%</string>

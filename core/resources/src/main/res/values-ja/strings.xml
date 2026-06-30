@@ -43,7 +43,7 @@
     <string name="forced_lives_label">強制された人生</string>
     <string name="forced_shape_label">強制形状</string>
     <string name="forced_width_label">強制幅</string>
-    <string name="game_over_message">ライフがなくなりました！ボードを再起動するか、広告を視聴しますか？</string>
+    <string name="game_over_message">ライフがなくなりました！</string>
     <string name="game_over_title">ゲームオーバー</string>
     <string name="generate_start_label">生成して開始</string>
     <string name="generating_progress">生成中…%1$d%%</string>

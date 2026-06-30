@@ -43,7 +43,7 @@
     <string name="forced_lives_label">मजबूर जीवन</string>
     <string name="forced_shape_label">बाध्य आकार</string>
     <string name="forced_width_label">बाध्य चौड़ाई</string>
-    <string name="game_over_message">आपके पास अब कोई लाइफ नहीं बची है! क्या आप बोर्ड को रीस्टार्ट करना चाहेंगे या कोई विज्ञापन देखना चाहेंगे?</string>
+    <string name="game_over_message">आपके पास अब कोई लाइफ नहीं बची है!</string>
     <string name="game_over_title">खेल खत्म</string>
     <string name="generate_start_label">उत्पन्न करें और प्रारंभ करें</string>
     <string name="generating_progress">जनरेट हो रहा है… %1$d%%</string>

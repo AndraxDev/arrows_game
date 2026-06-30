@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Vidas Forçadas</string>
     <string name="forced_shape_label">Forma Forçada</string>
     <string name="forced_width_label">Largura forçada</string>
-    <string name="game_over_message">Você não tem mais vidas! Deseja reiniciar o jogo ou assistir a um anúncio?</string>
+    <string name="game_over_message">Você não tem mais vidas!</string>
     <string name="game_over_title">Game Over</string>
     <string name="generate_start_label">Gerar e iniciar</string>
     <string name="generating_progress">Gerando… %1$d%%</string>

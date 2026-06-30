@@ -43,7 +43,7 @@
     <string name="forced_lives_label">جبری زندگی</string>
     <string name="forced_shape_label">جبری شکل</string>
     <string name="forced_width_label">جبری چوڑائی</string>
-    <string name="game_over_message">تم زندگی سے باہر ہو! کیا آپ بورڈ کو دوبارہ شروع کرنا چاہیں گے یا کوئی اشتہار دیکھنا چاہیں گے؟</string>
+    <string name="game_over_message">تم زندگی سے باہر ہو!</string>
     <string name="game_over_title">کھیل ختم</string>
     <string name="generate_start_label">پیدا کریں اور شروع کریں۔</string>
     <string name="generating_progress">تیار ہو رہا ہے… %1$d%%</string>

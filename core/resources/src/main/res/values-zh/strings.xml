@@ -43,7 +43,7 @@
     <string name="forced_lives_label">被迫的生活</string>
     <string name="forced_shape_label">强制形状</string>
     <string name="forced_width_label">强制宽度</string>
-    <string name="game_over_message">你的生命值已用完！你想重新开始游戏还是观看广告？</string>
+    <string name="game_over_message">你的生命值已用完！</string>
     <string name="game_over_title">游戏结束</string>
     <string name="generate_start_label">生成并开始</string>
     <string name="generating_progress">正在生成… %1$d%%</string>

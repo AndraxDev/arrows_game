@@ -66,7 +66,6 @@ import com.batodev.arrows.ui.game.WinCelebrationScreen
 import com.batodev.arrows.ui.game.rememberIntroState
 import com.batodev.arrows.ui.theme.HeartRed
 import com.batodev.arrows.ui.theme.LocalThemeColors
-import com.batodev.arrows.ui.theme.ProgressBarGreen
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
 import kotlinx.coroutines.launch
@@ -329,7 +328,7 @@ private fun BoxScope.LoadingOverlay(progress: Float, themeColors: ThemeColors) {
         LinearProgressIndicator(
             progress = { progress },
             modifier = Modifier.width(GameConstants.PROGRESS_BAR_WIDTH.dp),
-            color = ProgressBarGreen,
+            color = themeColors.accent,
             trackColor = themeColors.topBarButton
         )
     }
@@ -352,30 +351,30 @@ fun GameOverDialog(
                 color = White
             )
         },
+//        confirmButton = {
+//            Button(
+//                onClick = {
+//                    onWatchAd()
+//                },
+//                enabled = true,
+//                colors = ButtonDefaults.buttonColors(
+//                    containerColor = themeColors.accent,
+//                    contentColor = themeColors.background
+//                )
+//            ) {
+//                Icon(
+//                    Icons.Default.VideoLabel,
+//                    contentDescription = null,
+//                    modifier = Modifier.size(18.dp)
+//                )
+//                Spacer(modifier = Modifier.width(8.dp))
+//                Text(
+//                    text = stringResource(R.string.add_life_label),
+//                    color = themeColors.background
+//                )
+//            }
+//        },
         confirmButton = {
-            Button(
-                onClick = {
-                    onWatchAd()
-                },
-                enabled = true,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = themeColors.accent,
-                    contentColor = themeColors.background
-                )
-            ) {
-                Icon(
-                    Icons.Default.VideoLabel,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = stringResource(R.string.add_life_label),
-                    color = themeColors.background
-                )
-            }
-        },
-        dismissButton = {
             TextButton(onClick = onRestart) {
                 Text(stringResource(R.string.restart_board_label), color = HeartRed)
             }

@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Przymusowe życie</string>
     <string name="forced_shape_label">Wymuszony kształt</string>
     <string name="forced_width_label">Wymuszona szerokość</string>
-    <string name="game_over_message">Skończyły Ci się życia! Chcesz zrestartować planszę czy obejrzeć reklamę?</string>
+    <string name="game_over_message">Skończyły Ci się życia!</string>
     <string name="game_over_title">Koniec gry</string>
     <string name="generate_start_label">Wygeneruj i uruchom</string>
     <string name="generating_progress">Generowanie… %1$d%%</string>

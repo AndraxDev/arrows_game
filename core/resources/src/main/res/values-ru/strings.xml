@@ -43,7 +43,7 @@
     <string name="forced_lives_label">Принудительные жизни</string>
     <string name="forced_shape_label">Вынужденная форма</string>
     <string name="forced_width_label">Принудительная ширина</string>
-    <string name="game_over_message">У вас закончились жизни! Хотите перезапустить игру или посмотреть рекламу?</string>
+    <string name="game_over_message">У вас закончились жизни!</string>
     <string name="game_over_title">Игра закончена</string>
     <string name="generate_start_label">Сгенерировать и запустить</string>
     <string name="generating_progress">Генерация… %1$d%%</string>

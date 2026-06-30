@@ -39,19 +39,19 @@ private val LightColorScheme = lightColorScheme(primary = Purple40, secondary = 
 private fun getThemeColors(themeName: String, context: Context): ThemeColors = when (themeName) {
     "Green" -> ThemeColors(
         GreenBackground, GreenAccent, GreenSnake,
-        GreenAccent.copy(alpha = 0.2f), GreenBackground.copy(alpha = 0.8f)
+        GreenAccent.copy(alpha = 0.1f), GreenBackground.copy(alpha = 0.8f)
     )
     "Red" -> ThemeColors(
         RedBackground, RedAccent, RedSnake,
-        RedAccent.copy(alpha = 0.2f), RedBackground.copy(alpha = 0.8f)
+        RedAccent.copy(alpha = 0.1f), RedBackground.copy(alpha = 0.8f)
     )
     "Yellow" -> ThemeColors(
         YellowBackground, YellowAccent, YellowSnake,
-        YellowAccent.copy(alpha = 0.2f), YellowBackground.copy(alpha = 0.8f)
+        YellowAccent.copy(alpha = 0.1f), YellowBackground.copy(alpha = 0.8f)
     )
     "Orange" -> ThemeColors(
         OrangeBackground, OrangeAccent, OrangeSnake,
-        OrangeAccent.copy(alpha = 0.2f), OrangeBackground.copy(alpha = 0.8f)
+        OrangeAccent.copy(alpha = 0.1f), OrangeBackground.copy(alpha = 0.8f)
     )
     "Black and White" -> ThemeColors(
         BWBackground, BWAccent, BWSnake,
@@ -63,18 +63,18 @@ private fun getThemeColors(themeName: String, context: Context): ThemeColors = w
     )
     "Blue" -> ThemeColors(
         BlueBackground, AccentBlue, SnakeBlue,
-        AccentBlue.copy(alpha = 0.2f), BlueBackground.copy(alpha = 0.8f)
+        AccentBlue.copy(alpha = 0.1f), BlueBackground.copy(alpha = 0.8f)
     )
     "Purple" -> ThemeColors(
         PurpleBackground, PurpleAccent, PurpleSnake,
-        PurpleAccent.copy(alpha = 0.2f), PurpleBackground.copy(alpha = 0.8f)
+        PurpleAccent.copy(alpha = 0.1f), PurpleBackground.copy(alpha = 0.8f)
     )
     else -> {
         val dynamicSystemColorBackground = dynamicDarkColorScheme(context).background
         val dynamicSystemColorAccent = dynamicDarkColorScheme(context).primary
         return ThemeColors(
             dynamicSystemColorBackground, dynamicSystemColorAccent, dynamicSystemColorAccent,
-            dynamicSystemColorAccent.copy(alpha = 0.2f), dynamicSystemColorBackground.copy(alpha = 0.8f)
+            dynamicSystemColorAccent.copy(alpha = 0.1f), dynamicSystemColorBackground.copy(alpha = 0.8f)
         )
     }
 }

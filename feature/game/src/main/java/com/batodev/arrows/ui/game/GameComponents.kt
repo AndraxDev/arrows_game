@@ -37,7 +37,6 @@ import com.batodev.arrows.GameConstants
 import dev.andrax.arrows.core.resources.R
 import com.batodev.arrows.ui.theme.HeartRed
 import com.batodev.arrows.ui.theme.LocalThemeColors
-import com.batodev.arrows.ui.theme.ProgressBarGreen
 import com.batodev.arrows.ui.theme.ThemeColors
 import com.batodev.arrows.ui.theme.White
 
@@ -153,7 +152,7 @@ fun GameProgressBar(
     LinearProgressIndicator(
         progress = { animatedProgress },
         modifier = Modifier.fillMaxWidth().height(6.dp),
-        color = ProgressBarGreen,
+        color = themeColors.accent,
         trackColor = themeColors.topBarButton,
         strokeCap = StrokeCap.Round
     )
