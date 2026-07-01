@@ -9,7 +9,9 @@ class InitializationManager {
     val isInitialized: StateFlow<Boolean> = _isInitialized.asStateFlow()
 
     fun markInitialized() {
-        _isInitialized.value = true
+        if (!_isInitialized.value) {
+            _isInitialized.value = true
+        }
     }
 
     fun reset() {

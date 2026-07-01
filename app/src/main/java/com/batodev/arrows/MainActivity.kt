@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +17,7 @@ import com.bumble.appyx.core.integration.NodeHost
 import com.bumble.appyx.core.integrationpoint.ActivityIntegrationPoint
 import com.bumble.appyx.core.integrationpoint.IntegrationPointProvider
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.java.KoinJavaComponent.inject
 
 class MainActivity : ComponentActivity(), IntegrationPointProvider {
 
@@ -23,6 +25,7 @@ class MainActivity : ComponentActivity(), IntegrationPointProvider {
         private set
 
     private val appViewModel: AppViewModel by viewModel()
+    private val initializationManager: InitializationManager by inject(InitializationManager::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +36,15 @@ class MainActivity : ComponentActivity(), IntegrationPointProvider {
             val currentTheme by appViewModel.theme.collectAsState()
             var showSplash by remember { mutableStateOf(true) }
 
+            LaunchedEffect(currentTheme) {
+                initializationManager.markInitialized()
+            }
+
             ArrowsTheme(themeName = currentTheme, context = this@MainActivity) {
                 if (showSplash) {
                     SplashScreen(
-                        onSplashComplete = { showSplash = false },
-                        splashDurationMs = 300
+                        isInitialized = initializationManager.isInitialized,
+                        onSplashComplete = { showSplash = false }
                     )
                 } else {
                     NodeHost(integrationPoint = appyxV1IntegrationPoint) { buildContext ->

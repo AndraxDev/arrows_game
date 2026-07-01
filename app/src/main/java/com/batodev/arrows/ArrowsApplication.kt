@@ -5,6 +5,7 @@ import com.batodev.arrows.data.di.dataModule
 import com.batodev.arrows.ui.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
 class ArrowsApplication : Application() {
 
@@ -12,7 +13,15 @@ class ArrowsApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@ArrowsApplication)
-            modules(dataModule, viewModelModule)
+            modules(
+                appModule,
+                dataModule,
+                viewModelModule
+            )
         }
     }
+}
+
+private val appModule = module {
+    single { InitializationManager() }
 }

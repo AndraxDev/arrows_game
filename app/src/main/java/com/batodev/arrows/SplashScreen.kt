@@ -1,6 +1,5 @@
 package com.batodev.arrows
 
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,16 +12,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.batodev.arrows.ui.theme.LocalThemeColors
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.takeWhile
+import kotlinx.coroutines.withTimeoutOrNull
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun SplashScreen(
-    onSplashComplete: () -> Unit,
-    splashDurationMs: Long = 300
+    isInitialized: StateFlow<Boolean>,
+    onSplashComplete: () -> Unit
 ) {
     val themeColors = LocalThemeColors.current
 
     LaunchedEffect(Unit) {
-        delay(splashDurationMs)
+        delay(GameConstants.SPLASH_SCREEN_MIN_DURATION_MS.milliseconds)
+
+        withTimeoutOrNull(GameConstants.SPLASH_SCREEN_INIT_TIMEOUT_MS.milliseconds) {
+            isInitialized
+                .takeWhile { !it }
+                .collect { }
+        }
+
+        delay(GameConstants.SPLASH_SCREEN_BUFFER_AFTER_INIT_MS.milliseconds)
         onSplashComplete()
     }
 
@@ -32,7 +43,7 @@ fun SplashScreen(
             .background(themeColors.background),
         contentAlignment = Alignment.Center
     ) {
-        com.batodev.arrows.TriangleIcon(
+        TriangleIcon(
             modifier = Modifier.size(80.dp),
             color = Color.White
         )

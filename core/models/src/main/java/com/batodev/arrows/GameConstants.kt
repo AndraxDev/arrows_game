@@ -209,6 +209,13 @@ object GameConstants {
     const val CONGRATULATIONS_FONT_SIZE = 32
 
     // ====================
+    // INITIALIZATION DEFAULTS
+    // ====================
+    const val SPLASH_SCREEN_MIN_DURATION_MS = 300L
+    const val SPLASH_SCREEN_BUFFER_AFTER_INIT_MS = 100L
+    const val SPLASH_SCREEN_INIT_TIMEOUT_MS = 3000L
+
+    // ====================
     // OTHER PARAMS
     // ====================
 
