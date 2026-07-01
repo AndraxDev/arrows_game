@@ -301,21 +301,25 @@ and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 
 > Copied and modified in accordance with the GPLv3 license. Original author: Rob Mathew (robmat). Modifications by: Dmytro Ostapenko (AndraxDev)
 
-### Modification plan:
+### Modification list:
 
-- Update Android SDK compatibility
-- Fix issues with theme where button text and navigation color are rendered blue regardless of the theme set
-- Fix issues with black-white theme where some icon buttons are rendered completely white
-- Reduce redundant dialog transparency or at least add blur effect to make it easier to read dialog contents
-- Remove ads and distracting celebration videos
-- Expand touch area for arrows not only for it heads
-- Maybe make more lives per level as starting from level 30 there are only 2 lives which makes the game too hard and frustrating
-- Make board size in regular levels bigger so it is more interesting and challenging
-- Probably do something with screen transitions as some of them are too "rough" for now
-- Remove internet access permission to make the game fully offline and privacy-friendly
-- Add theme that follows system accent/wallpaper color
-- Add more theme colors
-- Harmonize existing theme colors to make them more visually appealing
+- Updated Android SDK compatibility
+- Fixed issues with theme where button text and navigation color are rendered blue regardless of the theme set
+- Fixed issues with black-white theme where some icon buttons are rendered completely white
+- Reduced redundant dialog transparency or at least add blur effect to make it easier to read dialog contents
+- Removed ads and distracting celebration videos
+- Expanded touch area for arrows not only for it heads
+- For each level there are now 5 lives and when they are lost the game is over, man!
+- Made board size in regular levels bigger so it is more interesting and challenging
+- Reduced the number of transitions
+- Removed internet access permission to make the game fully offline and privacy-friendly
+- Added theme that follows system accent/wallpaper color
+- Added more theme colors
+- Harmonized existing theme colors to make them more visually appealing
+- Changed board sized in the generator tab
+- Level generator is now unlocked by default
+- Added splash screen to allow the database to initialize
+- Deferred database initialization to a background thread to reduce startup time
 
 ### Further modifications by users:
 

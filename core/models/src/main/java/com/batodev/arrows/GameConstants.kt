@@ -16,9 +16,9 @@ object GameConstants {
     // ====================
     // CUSTOM GENERATOR UI
     // ====================
-    const val GENERATOR_MIN_SIZE = 10f
+    const val GENERATOR_MIN_SIZE = 5f
     const val GENERATOR_MAX_SIZE = 100f
-    const val GENERATOR_MAX_SIZE_FILL_BOARD = 50f
+    const val GENERATOR_MAX_SIZE_FILL_BOARD = 35f
     const val GENERATOR_DEFAULT_SIZE = 35f
     const val SHAPE_TYPE_RECTANGULAR = "rectangular"
     const val SHAPE_ICON_SIZE = 32

@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.batodev.arrows.navigation.RootNode
 import com.batodev.arrows.ui.AppViewModel
 import com.batodev.arrows.ui.theme.ArrowsTheme
@@ -28,12 +31,21 @@ class MainActivity : ComponentActivity(), IntegrationPointProvider {
 
         setContent {
             val currentTheme by appViewModel.theme.collectAsState()
+            var showSplash by remember { mutableStateOf(true) }
+
             ArrowsTheme(themeName = currentTheme, context = this@MainActivity) {
-                NodeHost(integrationPoint = appyxV1IntegrationPoint) { buildContext ->
-                    RootNode(
-                        buildContext = buildContext,
-                        appViewModel = appViewModel
+                if (showSplash) {
+                    SplashScreen(
+                        onSplashComplete = { showSplash = false },
+                        splashDurationMs = 300
                     )
+                } else {
+                    NodeHost(integrationPoint = appyxV1IntegrationPoint) { buildContext ->
+                        RootNode(
+                            buildContext = buildContext,
+                            appViewModel = appViewModel
+                        )
+                    }
                 }
             }
         }

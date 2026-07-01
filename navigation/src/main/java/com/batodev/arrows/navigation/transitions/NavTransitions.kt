@@ -20,10 +20,10 @@ internal fun Modifier.applyNavTransition(
     params: TransitionParams,
 ): Modifier = when (type) {
     NavTransitionType.FADE -> composedFade(transition)
-    NavTransitionType.SLIDE_HORIZONTAL -> composedSlideHorizontal(transition, params)
-    NavTransitionType.SLIDE_VERTICAL -> composedSlideVertical(transition, params)
-    NavTransitionType.SCALE_FADE -> composedScaleFade(transition)
-    NavTransitionType.ROTATE_FADE -> composedRotateFade(transition)
+//    NavTransitionType.SLIDE_HORIZONTAL -> composedSlideHorizontal(transition, params)
+//    NavTransitionType.SLIDE_VERTICAL -> composedSlideVertical(transition, params)
+//    NavTransitionType.SCALE_FADE -> composedScaleFade(transition)
+//    NavTransitionType.ROTATE_FADE -> composedRotateFade(transition)
 }
 
 private fun Modifier.composedFade(
